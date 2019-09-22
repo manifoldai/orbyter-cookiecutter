@@ -1,3 +1,39 @@
+# Docker ML Cookiecutter
+
+**Helping ML teams easily move to a Docker-first development workflow to iterate and deliver projects faster and more reliably.**
+
+*New to Docker? Check out this writeup on containers vs virtual machines and how Docker fits in:*
+
+*https://medium.freecodecamp.org/a-beginner-friendly-introduction-to-containers-vms-and-docker-79a9e3e119b*
+
+*Cookiecutter is a command-line utility that automatically scaffolds new projects for you based on a template (referred to as cookiecutters):* 
+
+*http://cookiecutter.readthedocs.io/en/latest/readme.html*
+
+
+This cookiecutter is used in conjunction with a base development image available in [Docker Hub](https://hub.docker.com/r/manifoldai/orbyter-ml-dev/) to provide an out-of-the-box ready environment for many Machine Learning project use cases.
+After running this cookiecutter and the provided start script a developer will have a local development setup that looks like this: 
+
+![docker local dev](https://s3-us-west-1.amazonaws.com/manifold-public-no-vpn/torus_local_dev.png)
+
+By scaffolding your data science projects using this cookiecutter you will get:
+
+- Project Docker image built with your own Dockerfile for project specific requirements
+- Docker Compose configuration that dynamically binds to a free host port and forwards to the jupyter server listening port inside the container
+- Shared volume configuration for accessing and executing all your project code inside of the controlled container environment
+- Ability to edit code using your favorite IDE on your host machine and seeing real-time changes to the runtime environment
+- Jupyter notebook fully configured with nb-extensions ready for development and feature engineering
+- Common data science and plotting libraries pre-installed in the container environment to start working immediately
+
+There are several downstream benefits for moving to a container-first workflow in terms of model and inference engine deployment/delivery.
+By using containers early in the development cycle you can remove a lot of the configuration management issues that waste developer time and ultimately lower quality of deliverables.
+
+## Why Did We Build This?
+
+We are trying to bridge the gap that exists between data science and dev/operations teams today. We wrote about it here:
+https://medium.com/manifold-ai/torus-a-toolkit-for-docker-first-data-science-bddcb4c97b52
+
+
 # Project Set-up
 
 ## Setting up Version Control
