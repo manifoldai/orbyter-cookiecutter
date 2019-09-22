@@ -23,8 +23,8 @@ echo "# DO NOT PUT SECRETS IN THIS FILE" >> $FILE
 echo "" >> $FILE
 echo "# Environment variables to be read by dockers containers. Do not use quotes" >> $FILE
 # mlflow
-echo "MLFLOW_TRACKING_URI=" >> $FILE
-echo "MLFLOW_ARTIFACT_LOCATION=" >> $FILE
+echo "MLFLOW_TRACKING_URI={{ cookiecutter.mlflow_uri }}" >> $FILE
+echo "MLFLOW_ARTIFACT_LOCATION={{ cookiecutter.mlflow_artifact }}" >> $FILE
 
 # Push scaffolded repo to GitHub
 echo "Making initial commit"
