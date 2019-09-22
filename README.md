@@ -84,13 +84,13 @@ mlflow_artifact []:
    Using HTTPS:
    
     ``` bash
-    $ cookiecutter https://github.com/manifoldai/manifold-cookiecutter-data-science.git
+    $ cookiecutter https://github.com/manifoldai/docker-ml-cookiecutter.git
     ```
     
     or SSH:
     
     ``` bash
-    $ cookiecutter git@github.com:manifoldai/manifold-cookiecutter-data-science.git
+    $ cookiecutter git@github.com:manifoldai/docker-ml-cookiecutter.git
     ```
 4. Answer all of the cookiecutter prompts for project name, description, license, etc.
 5. Run the start script from the level of your new project directory:
