@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  lint:
+    docker:
+      - image: {{ cookiecutter.base_docker_image  }}
+    steps:
+      - checkout
+      - run:
+          name: Black lint check
+          command: |-
+            echo "Running black"
+            black --check .
+      - run:
+          name: Flake8 lint check
+          command: |-
+            echo "Running flake8"
+            flake8 .
+  test:
+    docker:
+      - image: {{ cookiecutter.base_docker_image  }}
+    steps:
+      - checkout
+      - run:
+          name: pytest
+          command: |-
+            echo "Running pytest"
+            pytest {{ cookiecutter.repo_name }}
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - lint
+      - test

@@ -1,0 +1,57 @@
+version: 1
+disable_existing_loggers: False
+
+# Set different display formats
+formatters:
+    simple:
+        format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    descriptive:
+        format: '%(asctime)s - %(name)s - %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s'
+
+# Set-up different handlers, which are channels to display messages.
+# These can be the console or files, for example. You can set
+# the class (type), format, and minimum message display level
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: INFO
+        formatter: descriptive
+        stream: ext://sys.stdout
+
+    info_file_handler:
+        class: logging.FileHandler
+        level: INFO
+        mode: w
+        formatter: simple
+        filename: logs/info.log
+
+    error_file_handler:
+        class: logging.FileHandler
+        level: ERROR
+        mode: w
+        formatter: simple
+        filename: logs/errors.log
+
+# We can raise the message level and add additional handles to specific
+# to specific modules. The names of the import must match the key
+# name under loggers 
+loggers:
+    predict:
+        level: INFO
+        handlers: [console, info_file_handler, error_file_handler]
+        propagate: no
+    train:
+        level: INFO
+        handlers: [console, info_file_handler, error_file_handler]
+        propagate: no
+    evaluate:
+        level: INFO
+        handlers: [console, info_file_handler, error_file_handler]
+        propagate: no
+
+# We can raise the message level and add additional handles
+# to root, i.e., the function called from the command line
+# These are displayed as root, or __main__ in the message
+root:
+    level: DEBUG
+    handlers: [console, info_file_handler, error_file_handler]

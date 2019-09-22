@@ -1,0 +1,15 @@
+docs/site/
+
+# OSX Junk
+.DS_Store
+
+# test cache
+.cache/*
+tests/__pycache__/*
+
+# vim
+*swp
+*swo
+
+# PyCharm
+.idea
