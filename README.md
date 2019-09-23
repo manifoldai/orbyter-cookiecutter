@@ -95,7 +95,7 @@ mlflow_artifact []:
 4. Answer all of the cookiecutter prompts for project name, description, license, etc.
 5. Run the start script from the level of your new project directory:
     ``` bash
-    $ ./scripts/start.sh
+    $ ./scripts/local/start.sh
     ```
 6. After the project image builds check which host port is being forwarded to the Jupyter notebook server inside the running container:
     ``` bash
