@@ -9,6 +9,9 @@ import coloredlogs
 import yaml
 
 
+logger = logging.getLogger(__name__)
+
+
 def setup_logging(logging_config="logging.yml", default_level=logging.INFO):
     """
     Setup logging configuration
@@ -33,9 +36,13 @@ def setup_logging(logging_config="logging.yml", default_level=logging.INFO):
         console_level = config["handlers"]["console"]["level"]
         console_stream = config["handlers"]["console"]["stream"]
         coloredlogs.install(fmt=console_format, level=console_level, sys=console_stream)
+        # install color logging for all modules
+        for log_name, log_dict in config["loggers"]:
+            coloredlogs.install(fmt=console_format, level=log_dict["level"], logger=logging.getLogger(log_name))
+
     # from default
     else:
         logging.basicConfig(level=default_level)
         config_method = "default_level"
         coloredlogs.install(level="DEBUG")
-    logging.info(f"Logging set from {config_method}")
+    logger.info(f"Logging set from {config_method}")
