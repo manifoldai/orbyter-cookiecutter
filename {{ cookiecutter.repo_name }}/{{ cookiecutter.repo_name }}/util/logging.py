@@ -37,8 +37,18 @@ def setup_logging(logging_config="logging.yml", default_level=logging.INFO):
         console_stream = config["handlers"]["console"]["stream"]
         coloredlogs.install(fmt=console_format, level=console_level, sys=console_stream)
         # install color logging for all modules
-        for log_name, log_dict in config["loggers"]:
-            coloredlogs.install(fmt=console_format, level=log_dict["level"], logger=logging.getLogger(log_name))
+        for log_name, log_dict in config["loggers"].items():
+            coloredlogs.install(
+                fmt=console_format,
+                level=log_dict["level"],
+                logger=logging.getLogger(log_name),
+            )
+        # and root/__main__
+        coloredlogs.install(
+            fmt=console_format,
+            level=config["root"]["level"],
+            logger=logging.getLogger("__main__"),
+        )
 
     # from default
     else:
