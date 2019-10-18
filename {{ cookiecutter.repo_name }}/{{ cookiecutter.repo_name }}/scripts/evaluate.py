@@ -110,4 +110,3 @@ if __name__ == "__main__":
     setup_logging()
     load_dotenv(find_dotenv(), verbose=True, override=True)
     main()
-
