@@ -14,7 +14,7 @@ formatters:
 handlers:
     console:
         class: logging.StreamHandler
-        level: INFO
+        level: DEBUG
         formatter: descriptive
         stream: ext://sys.stdout
 
@@ -36,15 +36,15 @@ handlers:
 # to specific modules. The names of the import must match the key
 # name under loggers 
 loggers:
-    predict:
+    {{ cookiecutter.repo_name }}.scripts.predict:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no
-    train:
+    {{ cookiecutter.repo_name }}.scripts.train:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no
-    evaluate:
+    {{ cookiecutter.repo_name }}.scripts.evaluate:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no
