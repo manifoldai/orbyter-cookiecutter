@@ -93,16 +93,15 @@ def log_experiment(
     with mlflow.start_run():
         # param logging
         for key, val in params.items():
-            logging.info(f"Logging param {key}")
+            logger.info(f"Logging param {key}")
             mlflow.log_param(key, val)
         # metric logging
         for key, val in metrics.items():
-            logging.info(f"Logging metric {key}")
+            logger.info(f"Logging metric {key}")
             mlflow.log_metric(key, val)
         # artifact logging
-        print(artifacts)
         for key, val in artifacts.items():
-            logging.info(f"Logging artifact {key}")
+            logger.info(f"Logging artifact {key}")
             mlflow.log_artifact(val)
 
 
