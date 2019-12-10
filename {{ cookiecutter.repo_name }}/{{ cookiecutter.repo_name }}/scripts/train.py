@@ -14,7 +14,6 @@ import click
 from {{cookiecutter.repo_name}}.util.config import parse_config
 from {{cookiecutter.repo_name}}.util.logging import setup_logging_env
 
-
 logger = logging.getLogger(__name__)
 
 
