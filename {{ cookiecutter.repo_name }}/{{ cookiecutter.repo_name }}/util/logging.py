@@ -73,6 +73,7 @@ def setup_logging_env(main: Callable) -> Callable:
     Return:
         function after setting up logging and loading env variables
     """
+
     def wrapper(*args, **kwargs):
         setup_logging()
         load_dotenv(find_dotenv())
