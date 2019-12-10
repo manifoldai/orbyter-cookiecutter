@@ -38,7 +38,7 @@ docker-compose version 1.21.0, build 1719ceb
 ## Start Docker Containers
 
 The runtime for {{cookiecutter.project_name}} is inside a Docker container. We have helper scripts to launch the appropriate containers.  To launch a docker container and begin working on a CPU, run from the root directory of the repository:
-`./scripts/start.sh`
+`./scripts/docker/start.sh`
 
 
 This builds images using the Dockerfile in docker/Dockerfile, and runs containers named after the project directory. To see the running containers, run
@@ -153,7 +153,8 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 ```
 ├── LICENSE
 ├── README.md                 <- Project README
-├── config.yml                <- Project configuration for python scripts
+├── configs
+|   └──config.yml             <- Project configuration for python scripts
 ├── data                      <- Data cache folder
 │   ├── external              <- Data from third party sources.
 │   ├── interim               <- Intermediate data that has been transformed.
@@ -165,21 +166,22 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 │   └── requirements.txt      <- The requirements file for reproducing the analysis environment.
 │                                New libraries should be added in the requirements
 ├── experiments               <- Where to store different model experiments, e.g., model pkls and analysis
-|-- figures                   <- figure saving directory
 ├── logging.yml               <- Logging config file
 ├── logs                      <- Logging directory
-|-- model_cache               <- model cache directory
 ├── notebooks                 <- Jupyter notebooks. Naming convention is a number (for ordering),
 │                                the creator's initials, and a short `-` delimited description, e.g.
 │                                `1.0-jqp-initial-data-exploration`.
+├── pull_request_template.md  <- Pull request template for GitHub
 ├── pyproject.toml            <- Config file used by black
 ├── scripts                   <- executable bash script folder
-│   ├── autoformat.sh         <- Auto lints project
-│   ├── ci.sh                 <- Run a local CI test
-│   ├── docker_clean_all.sh   <- Helper script to remove all containers and images from your system
-│   └── start.sh              <- Script to run docker compose and any other project specific initialization 
-│                                steps
+│   ├── docker
+|         ├── autoformat.sh   <- Auto lints project
+│         ├── ci.sh           <- Run a local CI test
+|         └── make_docs.sh    <- Makes documentation using Sphinx      
+│   └── local
+|         └── start.sh        <- Script to run docker compose and any initialization steps
 ├── tox.ini                   <- tox config file with settings for flake
+├── .github/workflows/ci.yml  <- Default GitHub Actions CI setup
 └── {{cookiecutter.project_name}}   <- Project repo
     ├── __init__.py           <- Makes repo a Python module
     ├── features              <- Feature engineering pipeline go here 

@@ -32,4 +32,4 @@ git init
 git add .
 git commit -m "Scaffold repo"
 
-echo "All set! Run the start.sh script and open Kitematic from the Docker minibar menu to make sure your container is running the Jupyter service."
+echo "All set! Run the ./scripts/local/start.sh script to spin up your containers."
