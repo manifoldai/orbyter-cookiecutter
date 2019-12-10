@@ -1,0 +1,23 @@
+name: Continuous Integration
+
+on: [push]
+
+jobs:
+    test:
+      runs-on: ubuntu-latest
+      container:
+        image: docker://{{ cookiecutter.base_docker_image }}
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Black
+        run: black --check {{ cookiecutter.repo_name }}
+      - name: Flake8 
+        run: flake8 {{ cookiecutter.repo_name }}
+      - name: Unit Tests
+        run: |
+          pip install -r docker/requirements.txt
+          pytest {{ cookiecutter.repo_name }}
+        env:
+          MLFLOW_TRACKING_URI: /experiments
+          MLFLOW_ARTIFACT_LOCATION: 
