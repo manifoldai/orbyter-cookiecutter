@@ -12,7 +12,7 @@ import logging
 import click
 
 from {{cookiecutter.repo_name}}.util.config import parse_config
-from {{cookiecutter.repo_name}}.util.logging import setup_logging
+from {{cookiecutter.repo_name}}.util.logging import setup_logging_env
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +21,7 @@ logger = logging.getLogger(__name__)
 @click.argument(
     "config_file", type=click.Path(exists=True), default="/mnt/configs/config.yml"
 )
+@setup_logging_env
 def main(config_file="config.yml"):
     """
     Main function that loads config, sets up logging, and runs training
@@ -38,5 +39,4 @@ def main(config_file="config.yml"):
 
 
 if __name__ == "__main__":
-    setup_logging()
     main()

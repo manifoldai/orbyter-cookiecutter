@@ -4,9 +4,15 @@ This module is for logging utility functions.
 """
 import logging.config
 import os
+import sys
+from datetime import timedelta
+from typing import Callable
 
 import coloredlogs
+import numpy as np
 import yaml
+from dotenv import find_dotenv, load_dotenv
+from pytictoc import TicToc
 
 
 logger = logging.getLogger(__name__)
@@ -56,3 +62,29 @@ def setup_logging(logging_config="logging.yml", default_level=logging.INFO):
         config_method = "default_level"
         coloredlogs.install(level="DEBUG")
     logger.info(f"Logging set from {config_method}")
+
+
+def setup_logging_env(main: Callable) -> Callable:
+    """Decorator to set up loggging and load env variables
+
+    Args:
+        main: top level function (typically main triggered by CLI)
+
+    Return:
+        function after setting up logging and loading env variables
+    """
+
+    def wrapper(*args, **kwargs):
+        setup_logging()
+        load_dotenv(find_dotenv())
+        logger.info(f"Loaded environment variables")
+        logger.info(f"Starting {main.__name__}() in {sys.argv[0]}")
+        t = TicToc()
+        t.tic()
+        main(*args, **kwargs)
+        logger.info(
+            f"Finished {main.__name__}() in "
+            f"{timedelta(seconds=np.ceil(t.tocvalue()))}"
+        )
+
+    return wrapper
