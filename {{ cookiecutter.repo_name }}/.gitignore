@@ -81,6 +81,9 @@ target/
 
 # exclude data, experiments, logs from source control by default
 /data/
+!/data/tests/
+!/data/raw/.gitkeep
+!/data/processed/.gitkeep
 /experiments/*
 !/experiments/.gitkeep
 /logs/*
