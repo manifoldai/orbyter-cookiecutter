@@ -65,6 +65,14 @@ def setup_logging(logging_config="logging.yml", default_level=logging.INFO):
 
 
 def setup_logging_env(main: Callable) -> Callable:
+    """Decorator to set up loggging and load env variables
+
+    Args:
+        main: top level function (typically main triggered by CLI)
+
+    Return:
+        function after setting up logging and loading env variables
+    """
     def wrapper(*args, **kwargs):
         setup_logging()
         load_dotenv(find_dotenv())
