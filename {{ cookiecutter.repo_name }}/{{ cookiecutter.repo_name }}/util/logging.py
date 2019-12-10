@@ -7,6 +7,8 @@ import os
 
 import coloredlogs
 import yaml
+from pytictoc import TicToc
+from datetime import timedelta
 
 
 logger = logging.getLogger(__name__)
@@ -56,3 +58,15 @@ def setup_logging(logging_config="logging.yml", default_level=logging.INFO):
         config_method = "default_level"
         coloredlogs.install(level="DEBUG")
     logger.info(f"Logging set from {config_method}")
+
+
+def setup_logging_env(main: Callable)-> Callable:
+    def wrapper(*arg, **kwargs):
+        setup_logging_env()
+        load_env(find_env())
+        logger.info(f"Starting func() in {sys.argv[0]}")
+        t = TicToc()
+        t.tic()
+        main(*args, **kwargs)
+        logger.info(f"Finished func() in Run time {timedelta(seconds=t.tocvalue()}")
+    return wrapper

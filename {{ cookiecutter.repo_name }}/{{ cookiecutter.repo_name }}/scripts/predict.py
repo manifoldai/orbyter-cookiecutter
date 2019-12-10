@@ -11,12 +11,13 @@ import logging
 
 import click
 
-from {{cookiecutter.repo_name}}.util.logging import setup_logging
+from {{cookiecutter.repo_name}}.util.logging import setup_logging_env
 
 logger = logging.getLogger(__name__)
 
 
 @click.command()
+@setup_logging_env
 def main():
     """
     Main function that loads config, sets up logging, and runs predictions
@@ -31,6 +32,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # set-up logging only once
-    setup_logging()
     main()
