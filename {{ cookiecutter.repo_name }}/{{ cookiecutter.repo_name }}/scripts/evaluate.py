@@ -13,7 +13,6 @@ import os
 import click
 import mlflow
 import numpy as np
-from dotenv import find_dotenv, load_dotenv
 
 from {{cookiecutter.repo_name}}.util.config import parse_config
 from {{cookiecutter.repo_name}}.util.logging import setup_logging_env
