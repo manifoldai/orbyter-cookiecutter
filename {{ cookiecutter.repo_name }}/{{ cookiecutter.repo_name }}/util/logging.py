@@ -6,6 +6,7 @@ import logging.config
 import os
 import sys
 from datetime import timedelta
+from pathlib import Path
 from typing import Callable
 
 import coloredlogs
@@ -33,6 +34,13 @@ def setup_logging(logging_config="logging.yml", default_level=logging.INFO):
     if os.path.exists(logging_config):
         with open(logging_config, "rt") as f:
             config = yaml.safe_load(f)
+        # make sure logging directory exists
+        Path(config["handlers"]["info_file_handler"]["filename"]).parent.mkdir(
+            exist_ok=True
+        )
+        Path(config["handlers"]["error_file_handler"]["filename"]).parent.mkdir(
+            exist_ok=True
+        )
         logging.config.dictConfig(config)
         config_method = logging_config
         # set colored log (console streaming) to use params set in config
