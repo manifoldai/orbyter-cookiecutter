@@ -48,10 +48,14 @@ loggers:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no
+    # alembic (used by sql alchemy)
+    alembic:
+        level: WARNING
+        handlers: [console, info_file_handler, error_file_handler]
 
 # We can raise the message level and add additional handles
 # to root, i.e., the function called from the command line
 # These are displayed as root, or __main__ in the message
 root:
-    level: DEBUG
+    level: INFO
     handlers: [console, info_file_handler, error_file_handler]
