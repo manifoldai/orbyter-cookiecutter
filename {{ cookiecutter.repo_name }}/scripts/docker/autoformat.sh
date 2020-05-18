@@ -7,9 +7,9 @@
 set -ex
 
 echo 'Running isort'
-isort -rc /mnt/{{ cookiecutter.repo_name }}
+isort -rc /mnt/{{ cookiecutter.repo_name.replace("-", "_") }}
 
 echo 'Running black'
-black /mnt/{{ cookiecutter.repo_name }}
+black /mnt/{{ cookiecutter.repo_name.replace("-", "_") }}
 
 echo 'Finished auto formatting'
