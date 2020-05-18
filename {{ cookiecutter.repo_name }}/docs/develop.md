@@ -19,23 +19,23 @@ A basic CI job should check for two things:
 * Code passes lint.  Specifically it checks that PEP8 standards are met using `black` and `flake8`.
 * The unit tests pass.  Specifically it uses `pytest` to run the unit tests that are defined through out the repo. 
 
-You can run CI locally by running the script:
+You can run CI locally by running the script. Note that this should be run outside of the Docker container because make runs the ci commands using `docker exec` :
 ```bash
-./scripts/ci.sh
+make ci
 ```
 
 ### Lint
 
-[Linting](https://realpython.com/python-code-quality/) -- or checking the code style -- is an important part of any software development practice.  To make things simple, we have created a script that automates linting as much as possible. It can be invoked (from inside the Docker container as always):
+[Linting](https://realpython.com/python-code-quality/) -- or checking the code style -- is an important part of any software development practice.  To make things simple, we have created a script that automates linting as much as possible. It can be invoked:
 ```bash
-./scripts/autoformat.sh
+make lint
 ```
 
 This should use black and isort to automatically format your code so that it passes CI. If it is unable to, it will let you know. You can check if CI passes after auto-formatting by running the `ci.sh` script above. 
 
 ### Unit Tests
 
-We have written a number of unit tests for this repo. You can run all of them using `pytest`.  You can run a specific test suite by running that specific python file:
+We have written a number of unit tests for this repo. You can run all of them using `pytest`.  You can run a specific test suite by running that specific python file.  Note that these commands, if you want to run them, must  be run inside the Docker container:
 ```bash
 pytest {{cookiecutter.repo_name}}/scripts/test_evaluate.py -v
 ```
@@ -108,7 +108,7 @@ the environment variables are correctly loaded into the container. If you do not
 in the correct location. To do this, exit the container and run:
 
 ```bash
-./scripts/start.sh
+make dev-start
 ```
 
 ### Important note on new experiments with different storage locations
@@ -124,7 +124,7 @@ The Dockerfile also installs any project specific libraries from docker/requirem
 add it to the requirements.txt files, e.g, my_lib==x.x.x. 
 
 ```bash
-./scripts/start.sh
+make dev-start
 ```
 
 Or build an image directly, go to the docker folder `cd docker`, and run
@@ -140,7 +140,7 @@ Where image_name and tag are whatever you want to name and tag your image.
 To build the documentation for the project, 
 
 ```bash
-./scripts/make_docs.sh
+make sphinx
 ```
 
 You can open the index.html to read the docs, which is located in `docs/_build/html/index.html`.
@@ -166,4 +166,4 @@ can be done by registering your image in your cloud CI.
 ### 2. Mismatch between mlflow logging and UI
 
 This can happen when the .env is updated, but the image has not been rebuilt.
-Exit the container and rebuild with `./scripts/start.sh`
+Exit the container and rebuild with `make dev-start`

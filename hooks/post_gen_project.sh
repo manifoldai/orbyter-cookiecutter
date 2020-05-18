@@ -32,4 +32,4 @@ git init
 git add .
 git commit -m "Scaffold repo"
 
-echo "All set! Run the ./scripts/local/start.sh script to spin up your containers."
+echo "All set! Run `make dev-start` to spin up your containers."

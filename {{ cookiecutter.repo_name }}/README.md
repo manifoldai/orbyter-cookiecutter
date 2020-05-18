@@ -37,8 +37,10 @@ docker-compose version 1.21.0, build 1719ceb
 
 ## Start Docker Containers
 
-The runtime for {{cookiecutter.project_name}} is inside a Docker container. We have helper scripts to launch the appropriate containers.  To launch a docker container and begin working on a CPU, run from the root directory of the repository:
-`./scripts/docker/start.sh`
+The runtime for {{cookiecutter.project_name}} is inside a Docker container. We have a `make` command to launch the appropriate containers.  To launch the docker containers and begin working on a CPU, run from the root directory of the repository:
+```bash
+make dev-start
+```
 
 
 This builds images using the Dockerfile in docker/Dockerfile, and runs containers named after the project directory. To see the running containers, run
@@ -50,6 +52,11 @@ CONTAINER ID        IMAGE                          COMMAND                  CREA
 f168e19b8b67        {{cookiecutter.repo_name}}_mlflow            "bash -c 'mlflow ui …"   4 days ago          Up 3 days           127.0.0.1:32770->5000/tcp   {{cookiecutter.repo_name}}_mlflow_<username>
 87f03baf686e        {{cookiecutter.repo_name}}_bash     "/bin/bash"              4 days ago          Up 4 days           127.0.0.1:32768->8501/tcp   {{cookiecutter.repo_name}}_bash_<username>
 d9bd01600486        {{cookiecutter.repo_name}}_jupyter   "bash -c 'cd /mnt &&…"   4 days ago          Up 3 days           127.0.0.1:32769->8888/tcp   {{cookiecutter.repo_name}}_jupyter_<username>
+```
+
+We have also provided a simple make command to help you easily stop the containers associated with the project:
+```bash
+make dev-stop
 ```
 
 ## Using the Containers
@@ -173,14 +180,8 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 │                                `1.0-jqp-initial-data-exploration`.
 ├── pull_request_template.md  <- Pull request template for GitHub
 ├── pyproject.toml            <- Config file used by black
-├── scripts                   <- executable bash script folder
-│   ├── docker
-|         ├── autoformat.sh   <- Auto lints project
-│         ├── ci.sh           <- Run a local CI test
-|         └── make_docs.sh    <- Makes documentation using Sphinx      
-│   └── local
-|         └── start.sh        <- Script to run docker compose and any initialization steps
 ├── tox.ini                   <- tox config file with settings for flake
+├── Makefile                  <- Makefile for starting and stopping containers, lint, and local CI.
 ├── .github/workflows/ci.yml  <- Default GitHub Actions CI setup
 └── {{cookiecutter.project_name}}   <- Project repo
     ├── __init__.py           <- Makes repo a Python module
