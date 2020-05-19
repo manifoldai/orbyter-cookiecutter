@@ -29,10 +29,6 @@
 .. automodule:: {{ cookiecutter.repo_name }}.util.logging
     :members:
 
-{{ cookiecutter.repo_name }}.util.security
-===================================================
-.. automodule:: {{ cookiecutter.repo_name }}.util.security
-    :members:
 
 Indices and tables
 ==================

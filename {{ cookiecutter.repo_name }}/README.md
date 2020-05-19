@@ -37,8 +37,10 @@ docker-compose version 1.21.0, build 1719ceb
 
 ## Start Docker Containers
 
-The runtime for {{cookiecutter.project_name}} is inside a Docker container. We have helper scripts to launch the appropriate containers.  To launch a docker container and begin working on a CPU, run from the root directory of the repository:
-`./scripts/docker/start.sh`
+The runtime for {{cookiecutter.project_name}} is inside a Docker container. We have a `make` command to launch the appropriate containers.  To launch the docker containers and begin working on a CPU, run from the root directory of the repository:
+```bash
+make dev-start
+```
 
 
 This builds images using the Dockerfile in docker/Dockerfile, and runs containers named after the project directory. To see the running containers, run
@@ -50,6 +52,32 @@ CONTAINER ID        IMAGE                          COMMAND                  CREA
 f168e19b8b67        {{cookiecutter.repo_name}}_mlflow            "bash -c 'mlflow ui …"   4 days ago          Up 3 days           127.0.0.1:32770->5000/tcp   {{cookiecutter.repo_name}}_mlflow_<username>
 87f03baf686e        {{cookiecutter.repo_name}}_bash     "/bin/bash"              4 days ago          Up 4 days           127.0.0.1:32768->8501/tcp   {{cookiecutter.repo_name}}_bash_<username>
 d9bd01600486        {{cookiecutter.repo_name}}_jupyter   "bash -c 'cd /mnt &&…"   4 days ago          Up 3 days           127.0.0.1:32769->8888/tcp   {{cookiecutter.repo_name}}_jupyter_<username>
+```
+
+We have also provided a simple make command to help you easily stop the containers associated with the project:
+```bash
+make dev-stop
+```
+
+## Makefile
+
+We use `make` to run most of the typical developer operations, e.g. `make dev-start`, etc.  For a full list of make commands, run:
+```bash
+make help
+```
+
+The `make` commands supported out of the box are:
+```
+black                          Runs black auto-linter
+ci-black                       Test lint compliance using black. Config in pyproject.toml file
+ci-test                        Runs unit tests using pytest
+ci                             Check black, flake8, and run unit tests
+dev-start                      Primary make command for devs, spins up containers
+dev-stop                       Spin down active containers
+docs                           Build docs using Sphinx and copy to docs folder (this makes it easy to publish to gh-pages)
+git-tag                        Tag in git, then push tag up to origin
+isort                          Runs isort to sorts imports
+lint                           Lints repo; runs black and isort on all files
 ```
 
 ## Using the Containers
@@ -146,6 +174,19 @@ These are the file artifacts associated with a run. These include the logs, conf
 
 ![mlflow](docs/imgs/mlflow_detail.png?raw=true "MLFlow Detail UI")
 
+## Documentation
+
+The repo created is automatically setup with Sphinx to build HTML documentation.  If you write your pydoc in Google Style format, the parser will automatically generate the documentation.  See [Google Style Python Docstrings](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) for examples of such docstrings.  
+
+You can build the documentation by using the appropriate make command:
+```
+make docs
+```
+
+The built documentation can be configured in the `./docsrc` directory.  The two main files of interest are the `conf.py` and `index.rst`.  For more information about configuring Sphinx, please look at their [comprehensive documentation](https://www.sphinx-doc.org/en/master/).
+
+We have a specific structure for our docs directory which builds inside `./docsrc/_build` and then copies the built documentation over to `./docs` -- which by default is under source control.  This folder can be easily setup using GitHub Pages to serve up your documentation as a static site on GitHub.  For more information on how to set that up, please look at the documentation on [GitHub pages](https://pages.github.com/) and this [article](https://www.docslikecode.com/articles/github-pages-python-sphinx/).
+
 ## Conclusion
 This is the basic workflow! You can run this locally or on a cloud machine. When working on a cloud machine you will likely need to to ssh tunnelling, screen, and other tools to make sure you can view MLFLow and don't have issues with network pipes breaking.
 
@@ -165,6 +206,11 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 │   ├── docker-compose.yml    <- Docker Compose configuration file
 │   └── requirements.txt      <- The requirements file for reproducing the analysis environment.
 │                                New libraries should be added in the requirements
+├── docs                      <- Built docs are copied here for easy deploy to GitHub Pages
+├── docsrc                    <- Sphinx documentation folder
+│   ├── index.rst             <- ReStructured text documentation config
+│   ├── conf.py               <- Sphinx configuration file
+│   └── Makefile              <- Sphinx Makefile
 ├── experiments               <- Where to store different model experiments, e.g., model pkls and analysis
 ├── logging.yml               <- Logging config file
 ├── logs                      <- Logging directory
@@ -173,14 +219,8 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 │                                `1.0-jqp-initial-data-exploration`.
 ├── pull_request_template.md  <- Pull request template for GitHub
 ├── pyproject.toml            <- Config file used by black
-├── scripts                   <- executable bash script folder
-│   ├── docker
-|         ├── autoformat.sh   <- Auto lints project
-│         ├── ci.sh           <- Run a local CI test
-|         └── make_docs.sh    <- Makes documentation using Sphinx      
-│   └── local
-|         └── start.sh        <- Script to run docker compose and any initialization steps
 ├── tox.ini                   <- tox config file with settings for flake
+├── Makefile                  <- Makefile for starting and stopping containers, lint, and local CI.
 ├── .github/workflows/ci.yml  <- Default GitHub Actions CI setup
 └── {{cookiecutter.project_name}}   <- Project repo
     ├── __init__.py           <- Makes repo a Python module
