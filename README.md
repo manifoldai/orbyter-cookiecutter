@@ -93,9 +93,9 @@ mlflow_artifact []:
     $ cookiecutter git@github.com:manifoldai/docker-ml-cookiecutter.git
     ```
 4. Answer all of the cookiecutter prompts for project name, description, license, etc.
-5. Run the start script from the level of your new project directory:
+5. Run the appropriate `make` command from the level of your new project directory:
     ``` bash
-    $ ./scripts/local/start.sh
+    $ make dev-start
     ```
 6. After the project image builds check which host port is being forwarded to the Jupyter notebook server inside the running container:
     ``` bash
