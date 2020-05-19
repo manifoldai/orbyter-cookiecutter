@@ -206,6 +206,11 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 │   ├── docker-compose.yml    <- Docker Compose configuration file
 │   └── requirements.txt      <- The requirements file for reproducing the analysis environment.
 │                                New libraries should be added in the requirements
+├── docs                      <- Built docs are copied here for easy deploy to GitHub Pages
+├── docsrc                    <- Sphinx documentation folder
+│   ├── index.rst             <- ReStructured text documentation config
+│   ├── conf.py               <- Sphinx configuration file
+│   └── Makefile              <- Sphinx Makefile
 ├── experiments               <- Where to store different model experiments, e.g., model pkls and analysis
 ├── logging.yml               <- Logging config file
 ├── logs                      <- Logging directory
