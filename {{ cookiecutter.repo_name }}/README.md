@@ -59,6 +59,17 @@ We have also provided a simple make command to help you easily stop the containe
 make dev-stop
 ```
 
+## Makefile
+
+We use make to run most of the typical developer operations, e.g. `make dev-start`, etc.  For a full list of make commands, run:
+```bash
+make help
+```
+
+The commands supported out of the box are:
+```
+```
+
 ## Using the Containers
 
 The docker-compose is setup to mount the working directory of the repository into each of the containers.  That means that all change you make in the git repository will automatically show up in the containers, and vice versa. 
