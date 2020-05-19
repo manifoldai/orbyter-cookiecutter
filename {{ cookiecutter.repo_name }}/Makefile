@@ -38,9 +38,8 @@ dev-start: ## Primary make command for devs, spins up containers
 	docker-compose -f docker/docker-compose.yml --project-name $(PROJECT) up -d --build
 
 dev-stop: ## Spin down active containers
-	docker kill $(CONTAINER_NAME)
-	docker kill "{{ cookiecutter.repo_name }}_mlflow_${USER}"
-	docker kill "{{ cookiecutter.repo_name }}_jupyter_${USER}"
+	docker-compose -f docker/docker-compose.yml --project-name {{ cookiecutter.repo_name }} down
+
 
 docs: ## Build docs using Sphinx and copy to docs folder (this makes it easy to publish to gh-pages)
 	docker exec -e GRANT_SUDO=yes $(CONTAINER_NAME) bash -c "cd docsrc; make html"

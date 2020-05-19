@@ -183,9 +183,9 @@ You can build the documentation by using the appropriate make command:
 make docs
 ```
 
-The built documentation can be configured in the `/docsrc` directory.  The two main files of interest are the `conf.py` and `index.rst`.  For more information about configuring Sphinx, please look at their [comprehensive documentation](https://www.sphinx-doc.org/en/master/).
+The built documentation can be configured in the `./docsrc` directory.  The two main files of interest are the `conf.py` and `index.rst`.  For more information about configuring Sphinx, please look at their [comprehensive documentation](https://www.sphinx-doc.org/en/master/).
 
-We have a specific structure for our docs directory which builds inside `/docsrc/_build` and then copies the built documentation over to `/docs` -- which by default is under source control.  This folder can be easily setup using GitHub Pages to serve up your documentation as a static site on GitHub.  For more information on how to set that up, please look at the documentation on [GitHub pages](https://pages.github.com/) and this [article](https://www.docslikecode.com/articles/github-pages-python-sphinx/).
+We have a specific structure for our docs directory which builds inside `./docsrc/_build` and then copies the built documentation over to `./docs` -- which by default is under source control.  This folder can be easily setup using GitHub Pages to serve up your documentation as a static site on GitHub.  For more information on how to set that up, please look at the documentation on [GitHub pages](https://pages.github.com/) and this [article](https://www.docslikecode.com/articles/github-pages-python-sphinx/).
 
 ## Conclusion
 This is the basic workflow! You can run this locally or on a cloud machine. When working on a cloud machine you will likely need to to ssh tunnelling, screen, and other tools to make sure you can view MLFLow and don't have issues with network pipes breaking.
