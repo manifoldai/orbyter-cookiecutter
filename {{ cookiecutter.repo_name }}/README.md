@@ -61,23 +61,23 @@ make dev-stop
 
 ## Makefile
 
-We use make to run most of the typical developer operations, e.g. `make dev-start`, etc.  For a full list of make commands, run:
+We use `make` to run most of the typical developer operations, e.g. `make dev-start`, etc.  For a full list of make commands, run:
 ```bash
 make help
 ```
 
-The commands supported out of the box are:
+The `make` commands supported out of the box are:
 ```
-black                          Run black, which formats code
-ci-black                       Test lint compliance using black. Config in pyproject.toml file.
+black                          Runs black auto-linter
+ci-black                       Test lint compliance using black. Config in pyproject.toml file
 ci-test                        Runs unit tests using pytest
-ci                             Check black, flake8, and unittests
+ci                             Check black, flake8, and run unit tests
 dev-start                      Primary make command for devs, spins up containers
 dev-stop                       Spin down active containers
 docs                           Build docs using Sphinx and copy to docs folder (this makes it easy to publish to gh-pages)
-git-tag                        Tag in git, then push tag up to origin.
-isort                          Runs isort, which sorts imports
-lint                           Lint repo; runs black and isort on all files
+git-tag                        Tag in git, then push tag up to origin
+isort                          Runs isort to sorts imports
+lint                           Lints repo; runs black and isort on all files
 ```
 
 ## Using the Containers
