@@ -21,6 +21,9 @@ ci-flake8: ## Test lint compliance using flake8. Config in tox.ini file
 ci-test:  ## Runs unit tests using pytest
 	docker exec $(CONTAINER_NAME) pytest /mnt/{{ cookiecutter.repo_name.replace("-", "_") }}
 
+ci-test-interactive:  ## Runs unit tests using pytest, and gives you an interactive IPDB session at the first failure
+	docker exec -it $(CONTAINER_NAME) pytest /mnt/{{ cookiecutter.repo_name.replace("-", "_") }}  -x --pdb --pdbcls=IPython.terminal.debugger:Pdb
+
 ci: ci-black ci-flake8 ci-test ## Check black, flake8, and run unit tests
 	@echo "CI sucessful"
 
