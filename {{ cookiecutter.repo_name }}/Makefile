@@ -1,4 +1,4 @@
-.PHONY: help, ci-black, ci-flake8, ci-test, isort, black, docs
+.PHONY: help, ci-black, ci-flake8, ci-test, isort, black, docs, dev-start
 
 PROJECT={{ cookiecutter.repo_name }}
 CONTAINER_NAME="{{ cookiecutter.repo_name }}_bash_${USER}"  ## Ensure this is the same name as in docker-compose.yml file
@@ -12,25 +12,25 @@ git-tag:  ## Tag in git, then push tag up to origin
 	git tag $(TAG)
 	git push origin $(TAG)
 
-ci-black: ## Test lint compliance using black. Config in pyproject.toml file
+ci-black: dev-start ## Test lint compliance using black. Config in pyproject.toml file
 	docker exec $(CONTAINER_NAME) black --check /mnt/{{ cookiecutter.repo_name.replace("-", "_") }}
 
-ci-flake8: ## Test lint compliance using flake8. Config in tox.ini file
+ci-flake8: dev-start ## Test lint compliance using flake8. Config in tox.ini file
 	docker exec $(CONTAINER_NAME) flake8 /mnt/{{ cookiecutter.repo_name.replace("-", "_") }}
 
-ci-test:  ## Runs unit tests using pytest
+ci-test:  dev-start ## Runs unit tests using pytest
 	docker exec $(CONTAINER_NAME) pytest /mnt/{{ cookiecutter.repo_name.replace("-", "_") }}
 
-ci-test-interactive:  ## Runs unit tests using pytest, and gives you an interactive IPDB session at the first failure
+ci-test-interactive:  dev-start ## Runs unit tests using pytest, and gives you an interactive IPDB session at the first failure
 	docker exec -it $(CONTAINER_NAME) pytest /mnt/{{ cookiecutter.repo_name.replace("-", "_") }}  -x --pdb --pdbcls=IPython.terminal.debugger:Pdb
 
 ci: ci-black ci-flake8 ci-test ## Check black, flake8, and run unit tests
 	@echo "CI sucessful"
 
-isort: ## Runs isort to sorts imports
+isort: dev-start ## Runs isort to sorts imports
 	docker exec $(CONTAINER_NAME) isort -rc /mnt/{{ cookiecutter.repo_name.replace("-", "_") }}
 
-black: ## Runs black auto-linter
+black: dev-start ## Runs black auto-linter
 	docker exec $(CONTAINER_NAME) black /mnt/{{ cookiecutter.repo_name.replace("-", "_") }}
 
 lint: isort black ## Lints repo; runs black and isort on all files
