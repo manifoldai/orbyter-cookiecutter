@@ -8,7 +8,7 @@ services:
        - "127.0.0.1::8888"
     volumes:
        - ../:/mnt
-    entrypoint: bash -c "cd /mnt && jupyter notebook --NotebookApp.token='' --ip=0.0.0.0 --allow-root && /bin/bash" 
+    entrypoint: bash -c "cd /mnt && jupyter lab --NotebookApp.token='' --ip=0.0.0.0 --allow-root && /bin/bash" 
     stdin_open: true
     container_name: "{{ cookiecutter.repo_name }}_jupyter_${USER}"
     tty: true
