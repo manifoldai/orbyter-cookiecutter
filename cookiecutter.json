@@ -5,7 +5,7 @@
     "open_source_license": "Not open source",
     "author_name": "",
     "description": "My Project Description",
-    "base_docker_image": "manifoldai/orbyter-ml-dev:2.0",
+    "base_docker_image": "manifoldai/orbyter-ml-dev:2.1",
     "mlflow_uri": "/mnt/experiments",
     "mlflow_artifact": ""
 }
