@@ -85,7 +85,7 @@ def setup_logging_env(main: Callable) -> Callable:
     def wrapper(*args, **kwargs):
         setup_logging()
         load_dotenv(find_dotenv())
-        logger.info(f"Loaded environment variables")
+        logger.info("Loaded environment variables")
         logger.info(f"Starting {main.__name__}() in {sys.argv[0]}")
         t = TicToc()
         t.tic()
