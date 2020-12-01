@@ -1,0 +1,18 @@
+# This defines a GitHub action that executes arbitrary commands within a Docker
+# container defined by the local Dockerfile. Commands are passed to the
+# container via the `command` key and received by an entrypoint script that
+# feeds the command string to `bash -c`. See README for details.
+
+name: "Dockerfile CI"
+description: "Execute commands inside container defined by local Dockerfile"
+inputs:
+  command: # Command string to docker exec
+    description: "Command string to docker exec"
+    required: true
+    default: "pytest {{ cookiecutter.repo_name }}"
+runs:
+  using: "docker"
+  image: "../Dockerfile"
+  entrypoint: "./docker/action/action-exec.sh"
+  args:
+    - {{ "${{ inputs.command }}" }}
