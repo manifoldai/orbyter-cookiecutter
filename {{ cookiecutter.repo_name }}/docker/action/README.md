@@ -5,6 +5,11 @@ the local Dockerfile. Commands are passed to the container via the `command`
 input and received by an entrypoint script `action-exec.sh` that feeds the
 command string to `bash -c`
 
+## Documentation
+The documentation for how this action works can be found here:
+* [Creating a Docker container action](https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/creating-a-docker-container-action)
+* [Dockerfile support for GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/dockerfile-support-for-github-actions)
+
 ## Inputs
 
 ### `command`

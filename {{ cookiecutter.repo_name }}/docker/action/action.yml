@@ -1,4 +1,4 @@
-# This defines a GitHub aaction that executes arbitrary commands within a Docker
+# This defines a GitHub action that executes arbitrary commands within a Docker
 # container defined by the local Dockerfile. Commands are passed to the
 # container via the `command` key and received by an entrypoint script that
 # feeds the command string to `bash -c`. See README for details.
