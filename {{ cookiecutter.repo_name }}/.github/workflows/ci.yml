@@ -3,7 +3,7 @@ name: Continuous Integration
 on: [push]
 
 jobs:
-  test:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
