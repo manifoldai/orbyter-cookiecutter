@@ -11,7 +11,7 @@
 ## Basics
 Clone the code to your machine using the standard Git clone command. If you have SSH keys setup the command is:
 ```bash
-git clone git@github.com:manifoldai/{{cookiecutter.repo_name}}.git
+git clone git@github.com:manifoldai/{{cookiecutter.repo_name.lower().replace(" ", "_").replace("-",  "_")}}.git
 ``` 
 
  Important note: **Do not clone your code into Google Drive or DropBox**. There are known issues with MLFlow interacting with the file sync that is happening in the background. Clone to a directory that is not being synced by one of those services. 
@@ -49,9 +49,9 @@ This builds images using the Dockerfile in docker/Dockerfile, and runs container
 You should see three containers running.  For example, on my laptop this looks like the below.  On your machine the container ids and the names of the images and running containers will be different, i.e. they will have your username rather that sdey.  In addition, the local ports will be different as well. That is expected. 
 ```bash
 CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                       NAMES
-f168e19b8b67        {{cookiecutter.repo_name}}_mlflow            "bash -c 'mlflow ui …"   4 days ago          Up 3 days           127.0.0.1:32770->5000/tcp   {{cookiecutter.repo_name}}_mlflow_<username>
-87f03baf686e        {{cookiecutter.repo_name}}_bash     "/bin/bash"              4 days ago          Up 4 days           127.0.0.1:32768->8501/tcp   {{cookiecutter.repo_name}}_bash_<username>
-d9bd01600486        {{cookiecutter.repo_name}}_jupyter   "bash -c 'cd /mnt &&…"   4 days ago          Up 3 days           127.0.0.1:32769->8888/tcp   {{cookiecutter.repo_name}}_jupyter_<username>
+f168e19b8b67        {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-",  "_")}}_mlflow            "bash -c 'mlflow ui …"   4 days ago          Up 3 days           127.0.0.1:32770->5000/tcp   {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-",  "_")}}_mlflow_<username>
+87f03baf686e        {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-",  "_")}}_bash     "/bin/bash"              4 days ago          Up 4 days           127.0.0.1:32768->8501/tcp   {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-",  "_")}}_bash_<username>
+d9bd01600486        {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-",  "_")}}_jupyter   "bash -c 'cd /mnt &&…"   4 days ago          Up 3 days           127.0.0.1:32769->8888/tcp   {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-",  "_")}}_jupyter_<username>
 ```
 
 We have also provided a simple make command to help you easily stop the containers associated with the project:
@@ -96,7 +96,7 @@ docker exec -it <bash-executor-container-name> /bin/bash
 ```
 In the example above, that command would be: 
 ```bash
-docker exec -it {{cookiecutter.repo_name}}_bash-executer_<username> /bin/bash
+docker exec -it {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-",  "_")}}_bash-executer_<username> /bin/bash
 ```
 
 ### Jupyter Server
@@ -126,7 +126,7 @@ You can read about the configuration file structure [here](configs/README.md). I
 
 Once you have the data in the right place and a configuration file, the next step is to prepare your data for training. We do this by invoking the etl script:  
 ```bash
-python {{cookiecutter.repo_name}}/scripts/etl.py configs/examples/config_example.yml
+python {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-",  "_")}}/scripts/etl.py configs/examples/config_example.yml
 ```
 Note that this command should be run inside the bash executor container, not on your local host.  While running this command you will see info logging to the screen that tells you what the code is doing and how it is splitting the data. 
 ```bash
@@ -137,7 +137,7 @@ Note that this command should be run inside the bash executor container, not on 
 
 The most common script run in this repository is the `evaluate.py` script.  It trains and evaluates a model.  We run this script as follows:  
 ```bash
-python {{cookiecutter.repo_name}}/scripts/evaluate.py configs/examples/config_example.yml
+python {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-",  "_")}}/scripts/evaluate.py configs/examples/config_example.yml
 ```
 By default, this script will retrain a model from scratch, but you can point it do use an already trained model.  We'll cover that later in the README. For now, lets assume that we are training a model from scratch.  When you run the script, you will see output like the following below: 
 ```bash

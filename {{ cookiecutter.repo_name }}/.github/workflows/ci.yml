@@ -11,15 +11,15 @@ jobs:
       - name: Black
         uses: ./docker/action
         with:
-          command: black --check {{ cookiecutter.repo_name }}
+          command: black --check {{ cookiecutter.repo_name.lower().replace(' ', '_').replace('-', '_') }}
       - name: Flake8
         uses: ./docker/action
         with:
-          command: flake8 {{ cookiecutter.repo_name }}
+          command: flake8 {{ cookiecutter.repo_name.lower().replace(' ', '_').replace('-', '_')  }}
       - name: Unit Tests
         uses: ./docker/action
         with:
-          command: pytest {{ cookiecutter.repo_name }}
+          command: pytest {{ cookiecutter.repo_name.lower().replace(' ', '_').replace('-', '_')  }}
         env:
           MLFLOW_TRACKING_URI: {{ cookiecutter.mlflow_uri }}
           MLFLOW_ARTIFACT_LOCATION: {{ cookiecutter.mlflow_artifact }}

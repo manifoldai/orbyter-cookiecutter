@@ -36,15 +36,15 @@ handlers:
 # to specific modules. The names of the import must match the key
 # name under loggers 
 loggers:
-    {{ cookiecutter.repo_name }}.scripts.predict:
+    {{ cookiecutter.repo_name.lower().replace(" ", "_").replace("-", "_") }}.scripts.predict:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no
-    {{ cookiecutter.repo_name }}.scripts.train:
+    {{ cookiecutter.repo_name.lower().replace(" ", "_").replace("-", "_") }}.scripts.train:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no
-    {{ cookiecutter.repo_name }}.scripts.evaluate:
+    {{ cookiecutter.repo_name.lower().replace(" ", "_").replace("-", "_") }}.scripts.evaluate:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no

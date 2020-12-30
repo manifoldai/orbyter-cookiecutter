@@ -1,7 +1,7 @@
 import pytest
 from click.testing import CliRunner
 
-from {{cookiecutter.repo_name.replace("-", "_")}}.scripts.train import main
+from {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-", "_")}}.scripts.train import main
 
 
 @pytest.mark.parametrize("config_file", [("configs/config.yml")])
