@@ -46,6 +46,9 @@ dev-stop: ## Spin down active containers
 dev-rebuild: ## Rebuild images for dev containers (useful when Dockerfile/requirements are updated)
 	docker-compose -f docker/docker-compose.yml --project-name $(PROJECT) up -d --build
 
+bash: dev-start ## Exec into docker bash terminal
+	docker exec -it $(CONTAINER_NAME) bash
+
 docs: ## Build docs using Sphinx and copy to docs folder (this makes it easy to publish to gh-pages)
 	docker exec -e GRANT_SUDO=yes $(CONTAINER_NAME) bash -c "cd docsrc; make html"
 	@cp -a docsrc/_build/html/. docs
