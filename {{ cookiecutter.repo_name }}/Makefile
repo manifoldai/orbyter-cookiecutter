@@ -43,6 +43,8 @@ dev-start: ## Primary make command for devs, spins up containers
 dev-stop: ## Spin down active containers
 	docker-compose -f docker/docker-compose.yml --project-name {{ cookiecutter.repo_name }} down
 
+dev-rebuild: ## Rebuild images for dev containers (useful when Dockerfile/requirements are updated)
+	docker-compose -f docker/docker-compose.yml --project-name $(PROJECT) up -d --build
 
 docs: ## Build docs using Sphinx and copy to docs folder (this makes it easy to publish to gh-pages)
 	docker exec -e GRANT_SUDO=yes $(CONTAINER_NAME) bash -c "cd docsrc; make html"
