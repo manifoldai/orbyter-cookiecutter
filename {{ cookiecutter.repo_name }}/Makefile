@@ -22,7 +22,7 @@ ci-flake8: dev-start ## Test lint compliance using flake8. Config in tox.ini fil
 ci-test: dev-start ## Runs unit tests using pytest
 	docker exec $(CONTAINER_NAME) pytest $(PROJ_DIR)
 
-ci-mypy: ## Runs mypy type checker
+ci-mypy: dev-start ## Runs mypy type checker
 	docker exec $(CONTAINER_NAME) mypy --ignore-missing-imports $(PROJ_DIR)
 
 ci-test-interactive:  ## Runs unit tests using pytest, and gives you an interactive IPDB session at the first failure
