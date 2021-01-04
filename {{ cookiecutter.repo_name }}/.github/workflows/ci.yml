@@ -8,18 +8,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Black
-        uses: ./docker/action
-        with:
-          command: black --check {{ cookiecutter.repo_name }}
-      - name: Flake8
-        uses: ./docker/action
-        with:
-          command: flake8 {{ cookiecutter.repo_name }}
-      - name: Unit Tests
-        uses: ./docker/action
-        with:
-          command: pytest {{ cookiecutter.repo_name }}
-        env:
-          MLFLOW_TRACKING_URI: {{ cookiecutter.mlflow_uri }}
-          MLFLOW_ARTIFACT_LOCATION: {{ cookiecutter.mlflow_artifact }}
+      - name: Build Docker container
+        run: touch .env && make dev-start
+      - name: Run CI
+        run: make ci
