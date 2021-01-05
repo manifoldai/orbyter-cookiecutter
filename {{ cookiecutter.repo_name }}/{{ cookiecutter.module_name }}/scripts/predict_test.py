@@ -1,6 +1,6 @@
 from click.testing import CliRunner
 
-from {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-", "_")}}.scripts.predict import main
+from {{cookiecutter.module_name}}.scripts.predict import main
 
 
 def test_predict():

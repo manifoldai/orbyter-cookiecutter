@@ -9,7 +9,7 @@ inputs:
   command: # Command string to docker exec
     description: "Command string to docker exec"
     required: true
-    default: "pytest {{ cookiecutter.repo_name }}"
+    default: "pytest {{ cookiecutter.module_name }}"
 runs:
   using: "docker"
   image: "../Dockerfile"
