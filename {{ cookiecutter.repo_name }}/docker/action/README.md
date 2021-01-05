@@ -15,7 +15,7 @@ The documentation for how this action works can be found here:
 ### `command`
 
 **Required** - String of commands and arguments to pass to `bash -c` command.
-Default command is `pytest {{ cookiecutter.repo_name }}`.
+Default command is `pytest {{ cookiecutter.module_name }}`.
 
 ## Example usage
 
@@ -26,5 +26,5 @@ steps:
   - name: CI
     uses: ./docker/action
     with:
-      command: pytest {{ cookiecutter.repo_name }}
+      command: pytest {{ cookiecutter.module_name }}
 ```
