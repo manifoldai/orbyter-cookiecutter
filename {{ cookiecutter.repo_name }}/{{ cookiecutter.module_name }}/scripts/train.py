@@ -11,8 +11,13 @@ import logging
 
 import click
 
+<<<<<<< HEAD:{{ cookiecutter.repo_name }}/{{ cookiecutter.module_name }}/scripts/train.py
 from {{cookiecutter.module_name}}.util.config import parse_config
 from {{cookiecutter.module_name}}.util.logging import setup_logging_env
+=======
+from {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-", "_")}}.util.config import parse_config
+from {{cookiecutter.repo_name.lower().replace(" ", "_").replace("-", "_")}}.util.logging import setup_logging_env
+>>>>>>> origin/mws/fix-repo-reference:{{ cookiecutter.repo_name }}/{{ cookiecutter.repo_name.lower().replace(" ", "_").replace("-", "_") }}/scripts/train.py
 
 logger = logging.getLogger(__name__)
 

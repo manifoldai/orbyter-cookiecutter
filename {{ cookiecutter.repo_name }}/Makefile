@@ -41,7 +41,7 @@ dev-start: ## Primary make command for devs, spins up containers
 	docker-compose -f docker/docker-compose.yml --project-name $(PROJECT) up -d --no-recreate
 
 dev-stop: ## Spin down active containers
-	docker-compose -f docker/docker-compose.yml --project-name {{ cookiecutter.repo_name }} down
+	docker-compose -f docker/docker-compose.yml --project-name $(PROJECT) down
 
 dev-rebuild: ## Rebuild images for dev containers (useful when Dockerfile/requirements are updated)
 	docker-compose -f docker/docker-compose.yml --project-name $(PROJECT) up -d --build
