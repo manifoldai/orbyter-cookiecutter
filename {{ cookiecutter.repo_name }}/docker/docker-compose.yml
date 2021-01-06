@@ -1,19 +1,18 @@
-version: '3'
+version: "3"
 services:
-
   jupyter:
     build:
       context: .
     ports:
-       - "127.0.0.1::8888"
+      - "127.0.0.1::8888"
     volumes:
-       - ../:/mnt
-    entrypoint: bash -c "cd /mnt && jupyter lab --NotebookApp.token='' --ip=0.0.0.0 --allow-root && /bin/bash" 
+      - ../:/mnt
+    entrypoint: bash -c "cd /mnt && jupyter lab --NotebookApp.token='' --ip=0.0.0.0 --allow-root && /bin/bash"
     stdin_open: true
-    container_name: "{{ cookiecutter.repo_name }}_jupyter_${USER}"
+    container_name: "{{ cookiecutter.module_name }}_jupyter_${USER}"
     tty: true
     env_file:
-      - ../.env 
+      - ../.env
 
   mlflow:
     build:
@@ -21,22 +20,22 @@ services:
     ports:
       - "127.0.0.1::5000"
     volumes:
-       - ../:/mnt
-    entrypoint: bash -c "mlflow server -h 0.0.0.0 --backend-store-uri ${MLFLOW_TRACKING_URI} --default-artifact-root ${MLFLOW_ARTIFACT_LOCATION:-'None'} -p 5000 && /bin/bash" 
+      - ../:/mnt
+    entrypoint: bash -c "mlflow server -h 0.0.0.0 --backend-store-uri ${MLFLOW_TRACKING_URI} --default-artifact-root ${MLFLOW_ARTIFACT_LOCATION:-'None'} -p 5000 && /bin/bash"
     stdin_open: true
-    container_name: "{{ cookiecutter.repo_name }}_mlflow_${USER}"
+    container_name: "{{ cookiecutter.module_name }}_mlflow_${USER}"
     tty: true
     env_file:
-      - ../.env 
+      - ../.env
 
   bash:
     build:
       context: .
     volumes:
-       - ../:/mnt
-    entrypoint: "/bin/bash" 
+      - ../:/mnt
+    entrypoint: "/bin/bash"
     stdin_open: true
-    container_name: "{{ cookiecutter.repo_name }}_bash_${USER}"
+    container_name: "{{ cookiecutter.module_name }}_bash_${USER}"
     tty: true
     env_file:
-      - ../.env 
+      - ../.env

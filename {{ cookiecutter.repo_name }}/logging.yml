@@ -36,15 +36,15 @@ handlers:
 # to specific modules. The names of the import must match the key
 # name under loggers 
 loggers:
-    {{ cookiecutter.repo_name }}.scripts.predict:
+    {{ cookiecutter.module_name }}.scripts.predict:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no
-    {{ cookiecutter.repo_name }}.scripts.train:
+    {{ cookiecutter.module_name }}.scripts.train:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no
-    {{ cookiecutter.repo_name }}.scripts.evaluate:
+    {{ cookiecutter.module_name }}.scripts.evaluate:
         level: INFO
         handlers: [console, info_file_handler, error_file_handler]
         propagate: no

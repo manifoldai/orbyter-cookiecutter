@@ -1,8 +1,8 @@
 .PHONY: help, ci-black, ci-flake8, ci-test, isort, black, docs, dev-start, dev-stop
 
 PROJECT={{ cookiecutter.repo_name }}
-CONTAINER_NAME="{{ cookiecutter.repo_name }}_bash_${USER}"  ## Ensure this is the same name as in docker-compose.yml file
-PROJ_DIR="/mnt/{{ cookiecutter.repo_name.replace("-", "_") }}"
+CONTAINER_NAME="{{ cookiecutter.module_name }}_bash_${USER}"  ## Ensure this is the same name as in docker-compose.yml file
+PROJ_DIR="/mnt/{{ cookiecutter.module_name }}"
 VERSION_FILE:=VERSION
 TAG:=$(shell cat ${VERSION_FILE})
 
@@ -44,7 +44,7 @@ dev-start: ## Primary make command for devs, spins up containers
 	docker-compose -f docker/docker-compose.yml --project-name $(PROJECT) up -d --no-recreate
 
 dev-stop: ## Spin down active containers
-	docker-compose -f docker/docker-compose.yml --project-name {{ cookiecutter.repo_name }} down
+	docker-compose -f docker/docker-compose.yml --project-name $(PROJECT) down
 
 dev-rebuild: ## Rebuild images for dev containers (useful when Dockerfile/requirements are updated)
 	docker-compose -f docker/docker-compose.yml --project-name $(PROJECT) up -d --build

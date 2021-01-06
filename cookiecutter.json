@@ -1,11 +1,12 @@
 {
-    "project_name": "project_name",
-    "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
-    "repo_owner": "",
-    "open_source_license": "Not open source",
-    "author_name": "",
-    "description": "My Project Description",
-    "base_docker_image": "manifoldai/orbyter-ml-dev:3.2",
-    "mlflow_uri": "/mnt/experiments",
-    "mlflow_artifact": ""
+  "project_name": "project_name",
+  "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+  "module_name": "{{ cookiecutter.repo_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "repo_owner": "",
+  "open_source_license": "Not open source",
+  "author_name": "",
+  "description": "My Project Description",
+  "base_docker_image": "manifoldai/orbyter-ml-dev:3.2",
+  "mlflow_uri": "/mnt/experiments",
+  "mlflow_artifact": ""
 }
