@@ -11,8 +11,8 @@ import logging
 
 import click
 
-from {{cookiecutter.repo_name.replace("-", "_")}}.util.config import parse_config
-from {{cookiecutter.repo_name.replace("-", "_")}}.util.logging import setup_logging_env
+from {{cookiecutter.package_name}}.util.config import parse_config
+from {{cookiecutter.package_name}}.util.logging import setup_logging_env
 
 logger = logging.getLogger(__name__)
 
