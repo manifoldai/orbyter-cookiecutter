@@ -6,33 +6,33 @@
    :maxdepth: 2
 
 *******************************
-{{ cookiecutter.module_name }}.scripts.train
+{{ cookiecutter.package_name }}.scripts.train
 *******************************
-.. automodule:: {{ cookiecutter.module_name }}.scripts.train
+.. automodule:: {{ cookiecutter.package_name }}.scripts.train
     :members:
 
 *******************************
-{{ cookiecutter.module_name }}.scripts.evaluate
+{{ cookiecutter.package_name }}.scripts.evaluate
 *******************************
-.. automodule:: {{ cookiecutter.module_name }}.scripts.evaluate
+.. automodule:: {{ cookiecutter.package_name }}.scripts.evaluate
     :members:
 
 *******************************
-{{ cookiecutter.module_name }}.scripts.predict
+{{ cookiecutter.package_name }}.scripts.predict
 *******************************
-.. automodule:: {{ cookiecutter.module_name }}.scripts.predict
+.. automodule:: {{ cookiecutter.package_name }}.scripts.predict
     :members:
 
 *******************************
-{{ cookiecutter.module_name }}.util.config
+{{ cookiecutter.package_name }}.util.config
 *******************************
-.. automodule:: {{ cookiecutter.module_name }}.util.config
+.. automodule:: {{ cookiecutter.package_name }}.util.config
     :members:
 
 *******************************
-{{ cookiecutter.module_name }}.util.logging
+{{ cookiecutter.package_name }}.util.logging
 *******************************
-.. automodule:: {{ cookiecutter.module_name }}.util.logging
+.. automodule:: {{ cookiecutter.package_name }}.util.logging
     :members:
 
 ********************************

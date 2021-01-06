@@ -13,7 +13,7 @@
 Clone the code to your machine using the standard Git clone command. If you have SSH keys setup the command is:
 
 ```bash
-git clone git@github.com:manifoldai/{{cookiecutter.repo_name}}.git
+git clone git@github.com:manifoldai/{{cookiecutter.package_name}}.git
 ```
 
 Important note: **Do not clone your code into Google Drive or DropBox**. There are known issues with MLFlow interacting with the file sync that is happening in the background. Clone to a directory that is not being synced by one of those services.
@@ -57,9 +57,9 @@ You should see three containers running. For example, on my laptop this looks li
 
 ```bash
 CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                       NAMES
-f168e19b8b67        {{cookiecutter.module_name}}_mlflow            "bash -c 'mlflow ui …"   4 days ago          Up 3 days           127.0.0.1:32770->5000/tcp   {{cookiecutter.module_name}}_mlflow_<username>
-87f03baf686e        {{cookiecutter.module_name}}_bash     "/bin/bash"              4 days ago          Up 4 days           127.0.0.1:32768->8501/tcp   {{cookiecutter.module_name}}_bash_<username>
-d9bd01600486        {{cookiecutter.module_name}}_jupyter   "bash -c 'cd /mnt &&…"   4 days ago          Up 3 days           127.0.0.1:32769->8888/tcp   {{cookiecutter.module_name}}_jupyter_<username>
+f168e19b8b67        {{cookiecutter.package_name}}_mlflow            "bash -c 'mlflow ui …"   4 days ago          Up 3 days           127.0.0.1:32770->5000/tcp   {{cookiecutter.package_name}}_mlflow_<username>
+87f03baf686e        {{cookiecutter.package_name}}_bash     "/bin/bash"              4 days ago          Up 4 days           127.0.0.1:32768->8501/tcp   {{cookiecutter.package_name}}_bash_<username>
+d9bd01600486        {{cookiecutter.package_name}}_jupyter   "bash -c 'cd /mnt &&…"   4 days ago          Up 3 days           127.0.0.1:32769->8888/tcp   {{cookiecutter.package_name}}_jupyter_<username>
 ```
 
 We have also provided a simple make command to help you easily stop the containers associated with the project:
@@ -110,7 +110,7 @@ docker exec -it <bash-executor-container-name> /bin/bash
 In the example above, that command would be:
 
 ```bash
-docker exec -it {{cookiecutter.module_name}}_bash-executer_<username> /bin/bash
+docker exec -it {{cookiecutter.package_name}}_bash-executer_<username> /bin/bash
 ```
 
 ### Jupyter Server
@@ -135,7 +135,7 @@ Download the data and copy it to the right place. Typically we put raw data in `
 
 We have designed the code so that all experimentation is controlled by configuration files. You don't need to edit source code to run experiments. This is by design.
 
-There are a number of example configuration files checked into the repo [here](configs/examples). Note that the configuration files only encode _deltas_ from a base config file which is located [here](configs/config.yml). The typical workflow is to construct a configuration file by hand or using some special config generation helper utilities located [here]({{cookiecutter.module_name}}/util/config.py).
+There are a number of example configuration files checked into the repo [here](configs/examples). Note that the configuration files only encode _deltas_ from a base config file which is located [here](configs/config.yml). The typical workflow is to construct a configuration file by hand or using some special config generation helper utilities located [here]({{cookiecutter.package_name}}/util/config.py).
 
 You can read about the configuration file structure [here](configs/README.md). In the following we will work with the configuration file example `config_example.yml` located [here](configs/examples/config_example.yml).
 
@@ -144,7 +144,7 @@ You can read about the configuration file structure [here](configs/README.md). I
 Once you have the data in the right place and a configuration file, the next step is to prepare your data for training. We do this by invoking the etl script:
 
 ```bash
-python {{cookiecutter.module_name}}/scripts/etl.py configs/examples/config_example.yml
+python {{cookiecutter.package_name}}/scripts/etl.py configs/examples/config_example.yml
 ```
 
 Note that this command should be run inside the bash executor container, not on your local host. While running this command you will see info logging to the screen that tells you what the code is doing and how it is splitting the data.
@@ -158,7 +158,7 @@ Note that this command should be run inside the bash executor container, not on 
 The most common script run in this repository is the `evaluate.py` script. It trains and evaluates a model. We run this script as follows:
 
 ```bash
-python {{cookiecutter.module_name}}/scripts/evaluate.py configs/examples/config_example.yml
+python {{cookiecutter.package_name}}/scripts/evaluate.py configs/examples/config_example.yml
 ```
 
 By default, this script will retrain a model from scratch, but you can point it do use an already trained model. We'll cover that later in the README. For now, lets assume that we are training a model from scratch. When you run the script, you will see output like the following below:
@@ -251,7 +251,7 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 ├── tox.ini                   <- tox config file with settings for flake
 ├── Makefile                  <- Makefile for starting and stopping containers, lint, and local CI.
 ├── .github/workflows/ci.yml  <- Default GitHub Actions CI setup
-└── {{cookiecutter.module_name}}   <- Project source directory
+└── {{cookiecutter.package_name}}   <- Project source directory
     ├── __init__.py           <- Makes repo a Python module
     ├── features              <- Feature engineering pipeline go here
     ├── models                <- Model pipelines go here

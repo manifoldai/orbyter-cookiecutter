@@ -14,8 +14,8 @@ import click
 import mlflow
 import numpy as np
 
-from {{cookiecutter.module_name}}.util.config import parse_config
-from {{cookiecutter.module_name}}.util.logging import setup_logging_env
+from {{cookiecutter.package_name}}.util.config import parse_config
+from {{cookiecutter.package_name}}.util.logging import setup_logging_env
 
 logger = logging.getLogger(__name__)
 

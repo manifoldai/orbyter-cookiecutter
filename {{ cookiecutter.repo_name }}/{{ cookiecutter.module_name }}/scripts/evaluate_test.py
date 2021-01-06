@@ -3,7 +3,7 @@ import os
 import pytest
 from click.testing import CliRunner
 
-from {{cookiecutter.module_name}}.scripts.evaluate import main
+from {{cookiecutter.package_name}}.scripts.evaluate import main
 
 
 @pytest.mark.parametrize("config_file", [("configs/config.yml")])

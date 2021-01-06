@@ -11,7 +11,7 @@ import logging
 
 import click
 
-from {{cookiecutter.module_name}}.util.logging import setup_logging_env
+from {{cookiecutter.package_name}}.util.logging import setup_logging_env
 
 logger = logging.getLogger(__name__)
 

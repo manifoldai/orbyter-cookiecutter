@@ -1,8 +1,8 @@
 .PHONY: help, ci-black, ci-flake8, ci-test, isort, black, docs, dev-start, dev-stop
 
-PROJECT={{ cookiecutter.repo_name }}
-CONTAINER_NAME="{{ cookiecutter.module_name }}_bash_${USER}"  ## Ensure this is the same name as in docker-compose.yml file
-PROJ_DIR="/mnt/{{ cookiecutter.module_name }}"
+PROJECT={{ cookiecutter.package_name }}
+CONTAINER_NAME="{{ cookiecutter.package_name }}_bash_${USER}"  ## Ensure this is the same name as in docker-compose.yml file
+PROJ_DIR="/mnt/{{ cookiecutter.package_name }}"
 VERSION_FILE:=VERSION
 TAG:=$(shell cat ${VERSION_FILE})
 

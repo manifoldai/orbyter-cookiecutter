@@ -37,12 +37,12 @@ This should use black and isort to automatically format your code so that it pas
 
 We have written a number of unit tests for this repo. You can run all of them using `pytest`.  You can run a specific test suite by running that specific python file.  Note that these commands, if you want to run them, must  be run inside the Docker container:
 ```bash
-pytest {{cookiecutter.module_name}}/scripts/test_evaluate.py -v
+pytest {{cookiecutter.package_name}}/scripts/test_evaluate.py -v
 ```
 
 You can even just run a specific test by issuing a command like: 
 ```bash
-pytest {{cookiecutter.module_name}}/scripts/test_evaluate.py::test_evaluate -v
+pytest {{cookiecutter.package_name}}/scripts/test_evaluate.py::test_evaluate -v
 ```
 
 Read more about pytest and how to invoke tests [here](https://docs.pytest.org/en/latest/usage.html). 
@@ -70,9 +70,9 @@ MLFlow's UI is running on the mlflow docker container. See what port it's mapped
 
 ```bash
 CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                       NAMES
-f168e19b8b67        {{cookiecutter.module_name}}_mlflow            "bash -c 'mlflow ui …"   4 days ago          Up 3 days           127.0.0.1:32770->5000/tcp   {{cookiecutter.module_name}}_mlflow_<username>
-87f03baf686e        {{cookiecutter.module_name}}_bash     "/bin/bash"              4 days ago          Up 4 days           127.0.0.1:32768->8501/tcp   {{cookiecutter.module_name}}_bash_<username>
-d9bd01600486        {{cookiecutter.module_name}}_jupyter   "bash -c 'cd /mnt &&…"   4 days ago          Up 3 days           127.0.0.1:32769->8888/tcp   {{cookiecutter.module_name}}_jupyter_<username>
+f168e19b8b67        {{cookiecutter.package_name}}_mlflow            "bash -c 'mlflow ui …"   4 days ago          Up 3 days           127.0.0.1:32770->5000/tcp   {{cookiecutter.package_name}}_mlflow_<username>
+87f03baf686e        {{cookiecutter.package_name}}_bash     "/bin/bash"              4 days ago          Up 4 days           127.0.0.1:32768->8501/tcp   {{cookiecutter.package_name}}_bash_<username>
+d9bd01600486        {{cookiecutter.package_name}}_jupyter   "bash -c 'cd /mnt &&…"   4 days ago          Up 3 days           127.0.0.1:32769->8888/tcp   {{cookiecutter.package_name}}_jupyter_<username>
 ```
 
 Then go to `localhost:32770` on your browser to access the MLFlow UI.
