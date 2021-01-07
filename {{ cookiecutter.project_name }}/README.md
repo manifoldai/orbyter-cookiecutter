@@ -251,7 +251,8 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 ├── tox.ini                   <- tox config file with settings for flake
 ├── Makefile                  <- Makefile for starting and stopping containers, lint, and local CI.
 ├── .github/workflows/ci.yml  <- Default GitHub Actions CI setup
-└── {{cookiecutter.package_name}}   <- Project source directory
+├── .dvc                      <- dvc repo containing config and local cache
+└── {cookiecutter.package_name}}    <- Project source directory
     ├── __init__.py           <- Makes repo a Python module
     ├── features              <- Feature engineering pipeline go here
     ├── models                <- Model pipelines go here
@@ -271,3 +272,26 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 # Developer Workflow
 
 Continued development in this repo is straightforward. The scaffolding is meant to be extensible -- you should add your own models, loss functions, feature engineering pipelines, etc. For brevity we are not putting information about the intended development workflow in this README. Look [here](docs/develop.md) for more information about the intended development workflow for this repo.
+## DVC
+
+Orbyter uses DVC to perform data versioning on datasets and artifacts.
+
+### Adding a Remote to DVC
+
+
+DVC uses remote repositories to store versions of data and make it easy to share with a team. If you're adding a single remote or the first of multiple, include the ``--default`` in the command as shown below. DVC determines the type of remote (file location on disk, s3 bucket, etc.) based on the `remote_url` argumentsw
+
+Run `dvc remote add --default <remote_name> <remote_url>`
+
+
+### Tracking Files
+
+1. `dvc add <path_to_file>` - track artifact in git
+2. `dvc push` - push to remote repository
+
+### Retrieving Versions of Tracked Files
+
+1. `git checkout <branch>`
+2. `dvc pull` - sync local cache with remote cache based on current git HEAD
+3. `dvc checkout` - link files in local cache to appropriate location in project repo.
+
