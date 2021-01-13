@@ -14,16 +14,16 @@ git-tag:  ## Tag in git, then push tag up to origin
 	git push origin $(TAG)
 
 ci-black: dev-start ## Test lint compliance using black. Config in pyproject.toml file
-	docker exec $(CONTAINER_NAME) black --check $(PROJ_DIR)
+	docker exec -t $(CONTAINER_NAME) black --check $(PROJ_DIR)
 
 ci-flake8: dev-start ## Test lint compliance using flake8. Config in tox.ini file
-	docker exec $(CONTAINER_NAME) flake8 $(PROJ_DIR)
+	docker exec -t $(CONTAINER_NAME) flake8 $(PROJ_DIR)
 
 ci-test: dev-start ## Runs unit tests using pytest
-	docker exec $(CONTAINER_NAME) pytest $(PROJ_DIR)
+	docker exec -t $(CONTAINER_NAME) pytest $(PROJ_DIR)
 
 ci-mypy: dev-start ## Runs mypy type checker
-	docker exec $(CONTAINER_NAME) mypy --ignore-missing-imports $(PROJ_DIR)
+	docker exec -t $(CONTAINER_NAME) mypy --ignore-missing-imports $(PROJ_DIR)
 
 ci-test-interactive:  ## Runs unit tests using pytest, and gives you an interactive IPDB session at the first failure
 	docker exec -it $(CONTAINER_NAME) pytest $(PROJ_DIR)  -x --pdb --pdbcls=IPython.terminal.debugger:Pdb
@@ -32,10 +32,10 @@ ci: ci-black ci-flake8 ci-test ci-mypy ## Check black, flake8, and run unit test
 	@echo "CI sucessful"
 
 isort: dev-start  ## Runs isort to sorts imports
-	docker exec $(CONTAINER_NAME) isort -rc $(PROJ_DIR)
+	docker exec -t $(CONTAINER_NAME) isort -rc $(PROJ_DIR)
 
 black: dev-start ## Runs black auto-linter
-	docker exec $(CONTAINER_NAME) black $(PROJ_DIR)
+	docker exec -t $(CONTAINER_NAME) black $(PROJ_DIR)
 
 lint: isort black ## Lints repo; runs black and isort on all files
 	@echo "Linting complete"
