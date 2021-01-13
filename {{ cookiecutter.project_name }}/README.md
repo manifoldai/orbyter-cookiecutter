@@ -79,7 +79,7 @@ make help
 The `make` commands supported out of the box are:
 
 ```
-black                          Runs black auto-linter
+black                          Runs black auto-formatter
 ci-black                       Test lint compliance using black. Config in pyproject.toml file
 ci-test                        Runs unit tests using pytest
 ci                             Check black, flake8, and run unit tests
@@ -88,7 +88,7 @@ dev-stop                       Spin down active containers
 docs                           Build docs using Sphinx and copy to docs folder (this makes it easy to publish to gh-pages)
 git-tag                        Tag in git, then push tag up to origin
 isort                          Runs isort to sorts imports
-lint                           Lints repo; runs black and isort on all files
+format                           Formats repo; runs black and isort on all files
 ```
 
 ## Using the Containers
