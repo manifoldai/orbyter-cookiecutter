@@ -37,8 +37,10 @@ isort: dev-start  ## Runs isort to sorts imports
 black: dev-start ## Runs black auto-linter
 	docker exec $(CONTAINER_NAME) black $(PROJ_DIR)
 
-lint: isort black ## Lints repo; runs black and isort on all files
-	@echo "Linting complete"
+lint: format ## Deprecated. Here to support old workflow
+
+format: isort black ## Formats repo; runs black and isort on all files
+	@echo "Formatting complete"
 
 dev-start: ## Primary make command for devs, spins up containers
 	docker-compose -f docker/docker-compose.yml --project-name $(PROJECT) up -d --no-recreate
