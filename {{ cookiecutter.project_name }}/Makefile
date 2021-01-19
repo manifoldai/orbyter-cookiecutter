@@ -29,7 +29,7 @@ ci-test-interactive:  ## Runs unit tests using pytest, and gives you an interact
 	docker exec -it $(CONTAINER_NAME) pytest $(PROJ_DIR)  -x --pdb --pdbcls=IPython.terminal.debugger:Pdb
 
 ci: ci-black ci-flake8 ci-test ci-mypy ## Check black, flake8, and run unit tests
-	@echo "CI sucessful"
+	@echo "CI successful"
 
 isort: dev-start  ## Runs isort to sorts imports
 	docker exec -t $(CONTAINER_NAME) isort -rc $(PROJ_DIR)
