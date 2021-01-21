@@ -60,3 +60,7 @@ docs: ## Build docs using Sphinx and copy to docs folder (this makes it easy to 
 
 ipython: ## Provides an interactive ipython prompt
 	docker exec -it $(CONTAINER_NAME) ipython
+
+clean: ## Clean out temp/compiled python files
+	find . -name __pycache__ -delete
+	find . -name "*.pyc" -delete
