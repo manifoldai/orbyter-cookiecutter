@@ -1,11 +1,37 @@
 import pytest
+import pathlib
+
 from click.testing import CliRunner
 
-from {{cookiecutter.package_name}}.scripts.train import main
+from {{cookiecutter.package_name}}.scripts.train import main, _main
+
+_HERE = pathlib.Path(__file__).resolve().parent
 
 
 @pytest.mark.parametrize("config_file", [("configs/config.yml")])
-def test_train(config_file):
+def test_click_main(config_file):
+    """
+    This tests the _main() click runner AND ensures the main() function within it works
+    correctly when called by click
+    ```
+    """
     runner = CliRunner()
-    result = runner.invoke(main, [config_file])
-    assert result.exit_code == 0
+    try:
+        result = runner.invoke(_main, [config_file])
+        assert result.exit_code == 0
+    except AssertionError:
+        import traceback
+
+        traceback.print_exception(*result.exc_info)
+        raise
+
+
+def test_main():
+    """ This tests the function main() independently from the _main() click command
+    
+    This pattern aids in writing tests, as the function with the click decorators can be
+    separately tested from the script functionality itself. In addition, the main()
+    function can now be imported and used in other python modules
+    """
+    config_path = _HERE.parents[1].joinpath("configs", "config.yml")
+    assert main(config_path) is None

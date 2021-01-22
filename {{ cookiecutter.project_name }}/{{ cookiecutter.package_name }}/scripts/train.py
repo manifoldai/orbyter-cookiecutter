@@ -22,7 +22,12 @@ logger = logging.getLogger(__name__)
     "config_file", type=click.Path(exists=True), default="/mnt/configs/config.yml"
 )
 @setup_logging_env
-def main(config_file="config.yml"):
+def _main(config_file):
+    """ Train CLI Entrypoint """
+    main(config_file=config_file)
+
+
+def main(config_file):
     """
     Main function that loads config, sets up logging, and runs training
 
@@ -39,4 +44,4 @@ def main(config_file="config.yml"):
 
 
 if __name__ == "__main__":
-    main()
+    _main()
