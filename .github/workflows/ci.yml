@@ -1,0 +1,39 @@
+name: Continuous Integration
+
+on: [push]
+
+jobs:
+  test:
+    name: Test by running cookiecutter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: 'orbyter-cookiecutter'
+      - name: Install cookiecutter
+        run: pip install cookiecutter
+      - name: run ls
+        run: ls
+      - name: Cut a cookie (repo)
+        run: python -m cookiecutter --no-input orbyter-cookiecutter project_name=foundation repo_name=foundation
+      - name: Build project containers (make dev-start)
+        working-directory: foundation
+        run: make dev-start
+      - name: Run initial project tests (make ci)
+        working-directory: foundation
+        run: make ci
+      #   run: 
+      #   with:
+      #     command: black --check meml
+      # - name: Flake8
+      #   uses: ./docker/action
+      #   with:
+      #     command: flake8 meml
+      # - name: Unit Tests
+      #   uses: ./docker/action
+      #   with:
+      #     command: pytest meml
+      #   env:
+      #     MLFLOW_TRACKING_URI: /mnt/experiments
+      #     MLFLOW_ARTIFACT_LOCATION: 
