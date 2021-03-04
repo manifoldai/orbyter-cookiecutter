@@ -2,6 +2,8 @@
 
 **Helping ML teams easily move to a Docker-first development workflow to iterate and deliver projects faster and more reliably.**
 
+![Continuous integration](https://github.com/manifoldai/orbyter-cookiecutter/actions/workflows/ci.yml/badge.svg)
+
 *New to Docker? Check out this writeup on containers vs virtual machines and how Docker fits in:*
 
 *https://medium.freecodecamp.org/a-beginner-friendly-introduction-to-containers-vms-and-docker-79a9e3e119b*
