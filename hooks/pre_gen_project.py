@@ -14,9 +14,9 @@ def validate_python_package_name():
     if not re.match(r"^[a-z][_a-z0-9]+$", package_name):
         # Error out if you have an invalid module name
         logger.error(
-            f"{package_name} is not a valid Python module name!\n See "
+            f"{package_name} is not a valid Python module name! See "
             "https://www.python.org/dev/peps/pep-0008/#package-and-module-names "
-            "for naming standards.\n"
+            "for naming standards."
         )
         sys.exit(1)
 
