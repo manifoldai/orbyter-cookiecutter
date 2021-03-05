@@ -27,15 +27,3 @@ services:
     tty: true
     env_file:
       - ../.env
-
-  bash:
-    build:
-      context: .
-    volumes:
-      - ../:/mnt
-    entrypoint: "/bin/bash"
-    stdin_open: true
-    container_name: "{{ cookiecutter.package_name }}_bash_${USER}"
-    tty: true
-    env_file:
-      - ../.env
