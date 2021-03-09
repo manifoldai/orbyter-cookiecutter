@@ -1,7 +1,7 @@
 .PHONY: help, ci-black, ci-flake8, ci-test, isort, black, docs, dev-start, dev-stop
 
 ## Ensure this is the same name as in docker-compose.yml file
-CONTAINER_NAME="{{ cookiecutter.package_name }}_jupyter_${USER}"
+CONTAINER_NAME="{{ cookiecutter.package_name }}_develop_${USER}"
 
 PROJECT={{ cookiecutter.package_name }}
 

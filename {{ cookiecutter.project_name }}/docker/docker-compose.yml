@@ -1,6 +1,6 @@
 version: "3"
 services:
-  jupyter:
+  develop:
     build:
       context: .
     ports:
@@ -9,7 +9,7 @@ services:
       - ../:/mnt
     entrypoint: bash -c "cd /mnt && jupyter lab --NotebookApp.token='' --ip=0.0.0.0 --allow-root && /bin/bash"
     stdin_open: true
-    container_name: "{{ cookiecutter.package_name }}_jupyter_${USER}"
+    container_name: "{{ cookiecutter.package_name }}_develop_${USER}"
     tty: true
     env_file:
       - ../.env
