@@ -72,7 +72,7 @@ MLFlow's UI is running on the mlflow docker container. See what port it's mapped
 CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                       NAMES
 f168e19b8b67        {{cookiecutter.package_name}}_mlflow            "bash -c 'mlflow ui …"   4 days ago          Up 3 days           127.0.0.1:32770->5000/tcp   {{cookiecutter.package_name}}_mlflow_<username>
 87f03baf686e        {{cookiecutter.package_name}}_bash     "/bin/bash"              4 days ago          Up 4 days           127.0.0.1:32768->8501/tcp   {{cookiecutter.package_name}}_bash_<username>
-d9bd01600486        {{cookiecutter.package_name}}_jupyter   "bash -c 'cd /mnt &&…"   4 days ago          Up 3 days           127.0.0.1:32769->8888/tcp   {{cookiecutter.package_name}}_jupyter_<username>
+d9bd01600486        {{cookiecutter.package_name}}_develop   "bash -c 'cd /mnt &&…"   4 days ago          Up 3 days           127.0.0.1:32769->8888/tcp   {{cookiecutter.package_name}}_develop_<username>
 ```
 
 Then go to `localhost:32770` on your browser to access the MLFlow UI.

@@ -51,7 +51,7 @@ You should see two containers running. Note that the local ports could be differ
 ```bash
 $ docker ps
 CONTAINER ID   IMAGE                  COMMAND                  CREATED         STATUS        PORTS                                                  NAMES
-c5df791a2731   {{ cookiecutter.package_name }}_jupyter   "bash -c 'cd /mnt &&…"   3 seconds ago   Up 1 second   127.0.0.1:55003->8888/tcp                              {{ cookiecutter.package_name }}_jupyter_<username>
+c5df791a2731   {{ cookiecutter.package_name }}_develop   "bash -c 'cd /mnt &&…"   3 seconds ago   Up 1 second   127.0.0.1:55003->8888/tcp                              {{ cookiecutter.package_name }}_develop_<username>
 451fa5f876dc   {{ cookiecutter.package_name }}_mlflow    "bash -c 'mlflow ser…"   3 seconds ago   Up 1 second   127.0.0.1:55004->5000/tcp                              {{ cookiecutter.package_name }}_mlflow_<username>
 ```
 
@@ -92,11 +92,11 @@ isort                          Runs isort to sorts imports
 
 The `docker-compose.yml` file is setup to mount the working directory of the repository into each of the containers. That means that all changes you make in the git repository will automatically show up in the containers, and vice versa.
 
-The typical workflow is to do all text editing and git commands in the local host, but _run_ all the code inside the jupyter container, either in a notebook or through the shell. As mentioned earlier, the containers are the _runtime_ -- they have a consistent operating system (Ubuntu), drivers, libraries, and dependencies. It ensures that the runtime is consistent across all developers and compute environments -- from your local laptop to the cloud. This is the purpose of containerization. If you would like to read more about benefits of containerization read [here](https://dzone.com/articles/5-key-benefits-docker-ci).
+The typical workflow is to do all text editing and git commands in the local host, but _run_ all the code inside the develop container, either in a notebook or through the shell. As mentioned earlier, the containers are the _runtime_ -- they have a consistent operating system (Ubuntu), drivers, libraries, and dependencies. It ensures that the runtime is consistent across all developers and compute environments -- from your local laptop to the cloud. This is the purpose of containerization. If you would like to read more about benefits of containerization read [here](https://dzone.com/articles/5-key-benefits-docker-ci).
 
 Let's go over the two containers and how to use them.
 
-### Jupyter Container
+### Develop Container
 
 This container will run all your code. It's running a Jupyterlab server on port 8888 of the container, which is mapped to a port on your local machine as described above.
 

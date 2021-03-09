@@ -47,7 +47,7 @@ $ make bash
 $ python {{cookiecutter.package_name}}/scripts/etl.py configs/examples/config_example.yml
 ```
 
-Note that we use `make bash` to ensure that the code runs in the jupyter container, not on your local host.
+Note that we use `make bash` to ensure that the code runs in the develop container, not on your local host.
 While running this command, you should see info logging to the screen that tells you what the code is doing and how it is splitting the data.
 
 ### Step 5: Train and Evaluate a Model
