@@ -86,15 +86,15 @@ mlflow_artifact []:
    Using HTTPS:
    
     ``` bash
-    $ cookiecutter https://github.com/manifoldai/docker-ml-cookiecutter.git
+    $ cookiecutter https://github.com/manifoldai/orbyter-cookiecutter.git
     ```
     
     or SSH:
     
     ``` bash
-    $ cookiecutter git@github.com:manifoldai/docker-ml-cookiecutter.git
+    $ cookiecutter git@github.com:manifoldai/orbyter-cookiecutter.git
     ```
-4. Answer all of the cookiecutter prompts for project name, description, license, etc.
+4. Answer all of the cookiecutter prompts for project name, description, license, etc. You will have to select the base image. See [orbyter-docker project](https://github.com/manifoldai/orbyter-docker/blob/master/README.md) for descriptions of available suitable images.
 5. Run the appropriate `make` command from the level of your new project directory:
     ``` bash
     $ make dev-start
