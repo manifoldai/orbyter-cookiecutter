@@ -24,7 +24,7 @@ jobs:
       - name: Install cookiecutter
         run: pip install cookiecutter
       - name: Cut a cookie (repo)
-        run: "python -m cookiecutter --no-input orbyter-cookiecutter project_name=$TEST_PROJECT repo_name=$TEST_PROJECT"
+        run: "python -m cookiecutter --no-input orbyter-cookiecutter project_name=$TEST_PROJECT" 
       - name: Build project containers (make dev-start)
         working-directory: ${{env.TEST_PROJECT}}
         run: make dev-start

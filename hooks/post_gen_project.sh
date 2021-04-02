@@ -26,20 +26,9 @@ echo "# Environment variables to be read by dockers containers. Do not use quote
 echo "MLFLOW_TRACKING_URI={{ cookiecutter.mlflow_uri }}" >> $FILE
 echo "MLFLOW_ARTIFACT_LOCATION={{ cookiecutter.mlflow_artifact }}" >> $FILE
 
-# docker build step
-echo "Building docker image"
-docker-compose -f docker/docker-compose.yml build
-
 # Push scaffolded repo to GitHub
 echo "Making initial commit"
 git init
-
-# dvc
-# Initialize DVC after initializing git since git is a dependency.
-echo "Initializing DVC"
-CONTAINER_NAME="{{ cookiecutter.package_name }}_bash_${USER}"
-docker exec -it $CONTAINER_NAME dvc init
-
 git add .
 git commit -m "Scaffold repo"
 

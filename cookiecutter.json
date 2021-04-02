@@ -4,6 +4,7 @@
   "repo_owner": "",
   "open_source_license": "Not open source",
   "author_name": "",
+  "author_email": "",
   "description": "My Project Description",
   "base_docker_image": "manifoldai/orbyter-ml-dev:3.3",
   "mlflow_uri": "/mnt/experiments",
