@@ -59,7 +59,10 @@ format: isort black ## Formats repo by running black and isort on all files
 lint: format ## Deprecated. Here to support old workflow
 
 
-dev-start: ## Primary make command for devs, spins up containers
+.env: ## make an .env file
+	touch .env
+
+dev-start: .env ## Primary make command for devs, spins up containers
 	docker-compose -f $(COMPOSE_FILE) --project-name $(PROJECT) up -d --no-recreate
 
 
@@ -68,9 +71,8 @@ dev-stop: ## Spin down active containers
 
 
 # Useful when Dockerfile/requirements are updated)
-dev-rebuild: ## Rebuild images for dev containers
+dev-rebuild: .env ## Rebuild images for dev containers
 	docker-compose -f $(COMPOSE_FILE) --project-name $(PROJECT) up -d --build
-
 
 bash: dev-start ## Provides an interactive bash shell in the container
 	docker exec -it $(CONTAINER_NAME) bash
