@@ -33,4 +33,4 @@ jobs:
         run: make ci
       - name: Verify docker
         working-directory: ${{env.TEST_PROJECT}}
-        run: bash -c '[ `docker ps | wc -l` -eq 4 ] && echo "Success, 2 containers running" || exit 1'
+        run: bash -c '[ `docker ps | wc -l` -eq 3 ] && echo "Success, 2 containers running" || exit 1'
