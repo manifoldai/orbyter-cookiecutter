@@ -25,8 +25,5 @@ services:
     stdin_open: true
     container_name: "{{ cookiecutter.package_name }}_mlflow_${USER}"
     tty: true
-    environment: # takes precedent over env file
-      - MLFLOW_TRACKING_URI
-      - MLFLOW_ARTIFACT_LOCATION
     env_file:
       - ../.env
