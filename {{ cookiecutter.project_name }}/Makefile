@@ -78,13 +78,16 @@ bash: dev-start ## Provides an interactive bash shell in the container
 	docker exec -it $(CONTAINER_NAME) bash
 
 
+dvc-init: dev-start ## initialize DVC
+	docker exec -it $(CONTAINER_NAME) dvc init
+
 # makes it easy to publish to gh-pages
-docs: ## Build docs using Sphinx and copy to docs folder
+docs: dev-start ## Build docs using Sphinx and copy to docs folder
 	docker exec -e GRANT_SUDO=yes $(CONTAINER_NAME) bash -c "cd docsrc; make html"
 	@cp -a docsrc/_build/html/. docs
 
 
-ipython: ## Provides an interactive ipython prompt
+ipython: dev-start ## Provides an interactive ipython prompt
 	docker exec -it $(CONTAINER_NAME) ipython
 
 
