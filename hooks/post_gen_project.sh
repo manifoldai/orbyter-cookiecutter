@@ -19,7 +19,7 @@ echo "MLFLOW_ARTIFACT_LOCATION={{ cookiecutter.mlflow_artifact }}" >> $FILE
 
 FILE=env_template
 echo "Building env file ${FILE}"
-echo "# DO NOT PUT SECRETS IN THIS FILE" >> $FILE
+echo "# DO NOT PUT SECRETS IN env_template!" >> $FILE
 echo "" >> $FILE
 echo "# Environment variables to be read by dockers containers. Do not use quotes" >> $FILE
 # mlflow

@@ -140,7 +140,7 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 ├── Makefile                  <- Makefile for starting and stopping containers, lint, and local CI.
 ├── .github/workflows/ci.yml  <- Default GitHub Actions CI setup
 ├── .dvc                      <- dvc repo containing config and local cache
-└── {cookiecutter.package_name}}    <- Project source directory
+└── {{cookiecutter.package_name}}    <- Project source directory
     ├── __init__.py           <- Makes repo a Python module
     ├── features              <- Feature engineering pipeline go here
     ├── models                <- Model pipelines go here
