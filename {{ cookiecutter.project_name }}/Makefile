@@ -85,6 +85,7 @@ dvc-init: dev-start ## initialize DVC
 docs: dev-start ## Build docs using Sphinx and copy to docs folder
 	docker exec -e GRANT_SUDO=yes $(CONTAINER_NAME) bash -c "cd docsrc; make html"
 	@cp -a docsrc/_build/html/. docs
+	@echo "Documentation copied to ./docs. Open ./docs/index.html and take a look."
 
 
 ipython: dev-start ## Provides an interactive ipython prompt
