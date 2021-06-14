@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 )
 @setup_logging_env
 def _main(config_file):
-    """ Train CLI Entrypoint """
+    """Train CLI Entrypoint"""
     main(config_file=config_file)
 
 
