@@ -103,7 +103,11 @@ mlflow_artifact []:
     ``` bash
     $ docker ps 
     ```
-7. Using any browser access your notebook at localhost:{port}
+7. Using any browser access your notebook at localhost:{port}. Make can also
+    automatically open this:
+    ``` bash
+    $ make nb
+    ```
 8. Start working!
 
 
