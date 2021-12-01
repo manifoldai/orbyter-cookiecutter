@@ -33,7 +33,7 @@ By using containers early in the development cycle you can remove a lot of the c
 ## Why Did We Build This?
 
 We are trying to bridge the gap that exists between data science and dev/operations teams today. We wrote about it here:
-https://medium.com/manifold-ai/torus-a-toolkit-for-docker-first-data-science-bddcb4c97b52
+https://www.kdnuggets.com/2018/05/torus-docker-first-data-science.html
 
 
 # Project Set-up
