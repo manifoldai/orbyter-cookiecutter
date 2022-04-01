@@ -59,8 +59,8 @@ format: isort black ## Formats repo by running black and isort on all files
 lint: format ## Deprecated. Here to support old workflow
 
 
-.env: ## make an .env file
-	touch .env
+.env: ## copy the env_template if .env file does not exist
+	cp env_template .env
 
 dev-start: .env ## Primary make command for devs, spins up containers
 	docker-compose -f $(COMPOSE_FILE) --project-name $(PROJECT) up -d --no-recreate
