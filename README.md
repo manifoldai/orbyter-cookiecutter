@@ -35,6 +35,9 @@ By using containers early in the development cycle you can remove a lot of the c
 We are trying to bridge the gap that exists between data science and dev/operations teams today. We wrote about it here:
 https://medium.com/manifold-ai/torus-a-toolkit-for-docker-first-data-science-bddcb4c97b52
 
+## Support
+
+Orbyter cookiecutter supports Python 3.x
 
 # Project Set-up
 
