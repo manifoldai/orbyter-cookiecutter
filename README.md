@@ -83,6 +83,14 @@ mlflow_artifact []:
     ``` bash
     $ pip install cookiecutter
     ```
+    If you are on the latest macOS with zsh as the default, you will need to install this using pip3. To do this, update your path variable first by adding the following to your ~/.zshrc. 
+    ```
+    export PATH=/Users/jjovanovic/Library/Python/3.8/bin:$PATH
+    ```
+    Now you can run the following command
+    ```
+    $ pip3 install cookicutter
+    ```
     It is recommended to set up a central virtualenv or condaenv for cookiecutter and any other "system" wide Python packages you may need.
 3. Run the cookiecutter docker data science template to scaffold your new project:
    
