@@ -36,7 +36,7 @@ We have designed the code so that all experimentation is controlled by configura
 
 There are a number of example configuration files checked into the repo [here](configs/examples). Note that the configuration files only encode _deltas_ from a base config file which is located [here](configs/config.yml). The typical workflow is to construct a configuration file by hand or using some special config generation helper utilities located [here]({{cookiecutter.package_name}}/util/config.py).
 
-You can read about the configuration file structure [here](configs/README.md). In the following we will work with the configuration file example `config_example.yml` located [here](configs/examples/config_example.yml).
+You can read about the configuration file structure [here](configs/README.md). In the following we will work with the configuration file example `config.yml` located [here](configs/config.yml).
 
 ### Step 4: ETL the data
 
@@ -44,7 +44,7 @@ Once you have the data in the right place and a configuration file, the next ste
 
 ```bash
 $ make bash
-$ python {{cookiecutter.package_name}}/scripts/etl.py configs/examples/config_example.yml
+$ python {{cookiecutter.package_name}}/scripts/etl.py configs/config.yml
 ```
 
 Note that we use `make bash` to ensure that the code runs in the develop container, not on your local host.
@@ -55,7 +55,7 @@ While running this command, you should see info logging to the screen that tells
 The most common script run in this repository is the `evaluate.py` script. It trains and evaluates a model. We run this script as follows:
 
 ```bash
-python {{cookiecutter.package_name}}/scripts/evaluate.py configs/examples/config_example.yml
+python {{cookiecutter.package_name}}/scripts/evaluate.py configs/example.yml
 ```
 
 By default, this script will retrain a model from scratch, but you can point it do use an already trained model. We'll cover that later in the README. For now, lets assume that we are training a model from scratch. When you run the script, you will see output like the following below:
@@ -67,7 +67,8 @@ After training, the code runs a number of evaluation metrics and plots and logs 
 ### Step 6: View Run in MLFlow
 
 Once you have run an experiment, you want to look at the results in MLFlow. The easiest way is to use the MLFlow web UI. If you open up the MLFlow UI on your browser at `http://localhost:<mlflow_port>` you should see the MLFlow UI like below.
-![mlflow](docs/imgs/mlflow.png?raw=true "MLFlow UI")
+
+![mlflow](docsrc/imgs/mlflow.png?raw=true "MLFlow UI")
 
 The experiments are on the left. Experiments are a MLFlow construct to group together a number of related "runs" -- which are specific runs of our `evaluate.py` script. The experiment name is set through the configuration file. For example, if we're doing a set of runs around sample size, we could group them all under an experiment called `sample_size`. Under each experiment is each run -- which is given a unique name. If you click on a run of interest you can view the details of a specific run.
 
@@ -87,7 +88,7 @@ These are top level summary metrics that tell you how the run performed. Most of
 
 These are the file artifacts associated with a run. These include the logs, config file, and most importantly the error analysis figures. There are a number of interesting figures to look at. Note that the error analysis is typically always done on the test set, i.e. data that the model has never seen.
 
-![mlflow](docs/imgs/mlflow_detail.png?raw=true "MLFlow Detail UI")
+![mlflow](docsrc/imgs/mlflow_detail.png?raw=true "MLFlow Detail UI")
 
 ### Documentation
 
@@ -159,7 +160,7 @@ This is the basic workflow! You can run this locally or on a cloud machine. When
 
 ## Developer Workflow
 
-Continued development in this repo is straightforward. The scaffolding is meant to be extensible -- you should add your own models, loss functions, feature engineering pipelines, etc. For brevity we are not putting information about the intended development workflow in this README. Look [here](docs/develop.md) for more information about the intended development workflow for this repo.
+Continued development in this repo is straightforward. The scaffolding is meant to be extensible -- you should add your own models, loss functions, feature engineering pipelines, etc. For brevity we are not putting information about the intended development workflow in this README. Look [here](docsrc/develop.md) for more information about the intended development workflow for this repo.
 
 ## DVC
 

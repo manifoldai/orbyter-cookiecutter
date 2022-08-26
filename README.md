@@ -10,7 +10,7 @@
 
 *Cookiecutter is a command-line utility that automatically scaffolds new projects for you based on a template (referred to as cookiecutters):* 
 
-*http://cookiecutter.readthedocs.io/en/latest/readme.html*
+*https://cookiecutter.readthedocs.io/en/latest/README.html*
 
 
 This cookiecutter is used in conjunction with a base development image available in [Docker Hub](https://hub.docker.com/r/manifoldai/orbyter-ml-dev/) to provide an out-of-the-box ready environment for many Machine Learning project use cases.
@@ -33,7 +33,7 @@ By using containers early in the development cycle you can remove a lot of the c
 ## Why Did We Build This?
 
 We are trying to bridge the gap that exists between data science and dev/operations teams today. We wrote about it here:
-https://medium.com/manifold-ai/torus-a-toolkit-for-docker-first-data-science-bddcb4c97b52
+https://www.kdnuggets.com/2018/05/torus-docker-first-data-science.html
 
 ## Support
 
