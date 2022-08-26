@@ -115,10 +115,9 @@ mlflow_artifact []:
 
 
 ## Helpful Resources 
-- [Docker command cheatsheet](https://www.docker.com/sites/default/files/Docker_CheatSheet_08.09.2016_0.pdf)
+- [Docker command cheatsheet](https://www.docker.com/wp-content/uploads/2022/03/docker-cheat-sheet.pdf)
 - [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 - [Docker Compose reference](https://docs.docker.com/compose/compose-file/)
-- [Kitematic (GUI interface to work with Docker. Highly recommended if you are new to Docker!)](https://kitematic.com/)
 
 ## Contributing
 PRs and feature requests very welcome!
