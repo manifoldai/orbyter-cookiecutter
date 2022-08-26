@@ -69,7 +69,7 @@ dev-start: .env ## Primary make command for devs, spins up containers
 dev-stop: ## Spin down active containers
 	docker-compose -f $(COMPOSE_FILE) --project-name $(PROJECT) down
 
-nb: ## Opens Jupyterlab in the browser
+nb: dev-start ## Opens Jupyterlab in the browser
 	docker port $(CONTAINER_NAME) | grep 8888 | awk -F ":" '{print "http://localhost:"$$2}' | xargs open
 
 # Useful when Dockerfile/requirements are updated)
