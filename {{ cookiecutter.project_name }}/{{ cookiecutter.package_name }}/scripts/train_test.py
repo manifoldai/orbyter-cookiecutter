@@ -2,6 +2,7 @@ import pathlib
 
 import pytest
 from click.testing import CliRunner
+
 from {{cookiecutter.package_name}}.scripts.train import _main, main
 
 _HERE = pathlib.Path(__file__).resolve().parent
