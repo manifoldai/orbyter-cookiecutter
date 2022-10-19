@@ -2,19 +2,12 @@
 
 **Helping ML teams easily move to a Docker-first development workflow to iterate and deliver projects faster and more reliably.**
 
-![Continuous integration](https://github.com/manifoldai/orbyter-cookiecutter/actions/workflows/ci.yml/badge.svg)
+*New to Docker? Check out [this writeup](https://medium.freecodecamp.org/a-beginner-friendly-introduction-to-containers-vms-and-docker-79a9e3e119b) on containers vs virtual machines and how Docker fits in.*
 
-*New to Docker? Check out this writeup on containers vs virtual machines and how Docker fits in:*
-
-*https://medium.freecodecamp.org/a-beginner-friendly-introduction-to-containers-vms-and-docker-79a9e3e119b*
-
-*Cookiecutter is a command-line utility that automatically scaffolds new projects for you based on a template (referred to as cookiecutters):* 
-
-*https://cookiecutter.readthedocs.io/en/latest/README.html*
+*Cookiecutter is a command-line utility that automatically scaffolds new projects for you based on a template (referred to as cookiecutters)*: [Cookiecutter Documentation](https://cookiecutter.readthedocs.io/en/stable/)
 
 
-This cookiecutter is used in conjunction with a base development image available in [Docker Hub](https://hub.docker.com/r/manifoldai/orbyter-ml-dev/) to provide an out-of-the-box ready environment for many Machine Learning project use cases.
-After running this cookiecutter and the provided start script a developer will have a local development setup that looks like this: 
+This cookiecutter is used in conjunction with a base development image available in [Docker Hub](https://hub.docker.com/r/manifoldai/orbyter-ml-dev/) to provide a ready environment out-of-the-box for many Machine Learning project use cases. After running this cookiecutter and the provided start script a developer will have a local development setup that looks like this: 
 
 ![docker local dev](https://s3-us-west-1.amazonaws.com/manifold-public-no-vpn/torus_local_dev.png)
 
@@ -27,17 +20,17 @@ By scaffolding your data science projects using this cookiecutter you will get:
 - Jupyter notebook fully configured with nb-extensions ready for development and feature engineering
 - Common data science and plotting libraries pre-installed in the container environment to start working immediately
 
-There are several downstream benefits for moving to a container-first workflow in terms of model and inference engine deployment/delivery.
-By using containers early in the development cycle you can remove a lot of the configuration management issues that waste developer time and ultimately lower quality of deliverables.
+There are several downstream benefits for moving to a container-first workflow in terms of model and inference engine deployment/delivery. By using containers early in the development cycle you can remove a lot of the configuration management issues that waste developer time and ultimately lower quality of deliverables.
 
 ## Why Did We Build This?
 
-We are trying to bridge the gap that exists between data science and dev/operations teams today. We wrote about it here:
-https://www.kdnuggets.com/2018/05/torus-docker-first-data-science.html
+
+We are trying to bridge the gap that exists between data science and dev/operations teams today. We wrote [more about it here](https://www.kdnuggets.com/2018/05/torus-docker-first-data-science.html).
+
 
 ## Support
 
-Orbyter cookiecutter supports Python 3.x
+The Orbyter cookiecutter supports Python 3.x
 
 # Project Set-up
 
@@ -45,14 +38,15 @@ Orbyter cookiecutter supports Python 3.x
 
 We recommend setting up a remote for Git version control after running `cookiecutter`.  For example, if you want to use GitHub, go to [GitHub](https://github.com/), create the repo, and push your local work.
 
+
 ## Setting up Continuous Integration
 
-You can read more about continuous integration and delivery [here](https://martinfowler.com/bliki/ContinuousDelivery.html). In its default configuration, we use CI to lint and test code that gets pushed to origin. This is crucial for making sure code is always up to standards. As it currently stands this cookiecutter sets up a CircleCI configuration in the `.circleci` folder.  In future releases we will add other CI options like GitHub actions, Jenkins, etc.  To fully setup CircleCI, after running `cookiecutter` log into log into [circleCI](https://circleci.com/). Click 'Add Projects', select your project, click 'Start Building'.
+You can read more about continuous integration and delivery [here](https://martinfowler.com/bliki/ContinuousDelivery.html). In its default configuration, we use CI to format, lint, and test code that gets shared with others. This is crucial for ensuring code is always up to standards. This cookiecutter currently sets up a Github Actions configuration in the `.github` folder.  Other CI options include Jenkins, CircleCI, etc.
 
-## MLFlow
 
-You have the option to set up your MLFlow configuration in the cookiecutter questions. These can always be changed later in
-the .env. In the prompts, you can set MLflow's tracking URI and MLFlow's artifact location. The prompts for MLFlow in the cookiecutter are:
+## Setting up MLFlow
+
+You have the option to configure MLFlow through the cookiecutter prompts. This configuration can be changed later in `.env`. In the prompts, you can set MLflow's tracking URI and MLFlow's artifact location. The prompts for MLFlow in the cookiecutter are:
 
 ```
 mlflow_uri [/mnt/experiments]:
@@ -60,13 +54,15 @@ mlflow_uri [/mnt/experiments]:
 mlflow_artifact []:
 ```
 
-`mlflow_uri` sets the URI location. This sets where parameters, metrics, and other [run](run) details are stored. This can be local (default to /mnt/experiments) or a SQL database. The `mlflow_artifact` sets the artifact locations. Artifacts are various files, and they can be stored either on the local filesysm or a cloud storage like S3.  Note that there is additional setup required to use a cloud like AWS -- both S3 bucket setup, RDS setup, and AWS credential management. 
+`mlflow_uri` sets the URI location. This sets where parameters, metrics, and other [run](run) details are stored. This can be local (default to /mnt/experiments) or a SQL database. The `mlflow_artifact` option sets the artifact locations. Artifacts are various files, and they can be stored either on the local file system or cloud storage like S3.  Note that there is additional setup required to use a cloud provider like AWS (S3 bucket setup, RDS setup, and AWS credential management). 
+
 
 ## <a name="setup"></a> Setting up a project
 1. Install Docker: 
     - For Mac: https://store.docker.com/editions/community/docker-ce-desktop-mac
+        - It is important to select _Mac with Apple Chip_ if you have an Apple Silicon (M1, M2) chip. Check _About this Mac > Overview > Chip_ for Apple or Intel.
     - For Windows: https://store.docker.com/editions/community/docker-ce-desktop-windows
-    - For Linux: Go to this page and choose the appropriate install for your Linux distro: https://www.docker.com/community-edition
+    - For Linux: Go to [this page](https://www.docker.com/community-edition) and choose the appropriate install for your Linux distro: 
         - Install Docker Compose (https://docs.docker.com/compose/install/#install-compose):
             ```bash
             $ sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
@@ -79,11 +75,12 @@ mlflow_artifact []:
             $ docker-compose --version
             docker-compose version 1.21.0, build 1719ceb
             ```
-2. Install Python Cookiecutter package: http://cookiecutter.readthedocs.org/en/latest/installation.html >= 1.4.0
+2. Install Cookiecutter (`>= 1.4.0`) through Python. Follow the [installation guide](https://cookiecutter.readthedocs.io/en/stable/installation.html) if the following installation through `pip` fails:
     ``` bash
-    $ pip install cookiecutter
+    $ python3 -m pip install cookiecutter
     ```
-    It is recommended to set up a central virtualenv or condaenv for cookiecutter and any other "system" wide Python packages you may need.
+    It is recommended to set up a central virtualenv or condaenv for cookiecutter and any other "system-wide" Python packages you may need.
+
 3. Run the cookiecutter docker data science template to scaffold your new project:
    
    Using HTTPS:
@@ -97,19 +94,23 @@ mlflow_artifact []:
     ``` bash
     $ cookiecutter git@github.com:manifoldai/orbyter-cookiecutter.git
     ```
-4. Answer all of the cookiecutter prompts for project name, description, license, etc. You will have to select the base image. See [orbyter-docker project](https://github.com/manifoldai/orbyter-docker/blob/master/README.md) for descriptions of available suitable images.
-5. Run the appropriate `make` command from the level of your new project directory:
+
+4. Answer all of the cookiecutter prompts for project name, description, license, etc. You will have to select the base image. See [orbyter-docker project](https://github.com/manifoldai/orbyter-docker/blob/master/README.md) for descriptions of available images.
+
+5. There are a series of commands pre-defined in `Makefile`. Run the appropriate `make` command from the level of your new project directory to build and run your Docker image:
     ``` bash
     $ make dev-start
     ```
-6. After the project image builds check which host port is being forwarded to the Jupyter notebook server inside the running container:
+
+6. After the project image builds, check which host port is being forwarded to the Jupyter notebook server inside the running container:
     ``` bash
     $ docker ps 
     ```
-7. Using any browser access your notebook at localhost:{port}. Make can also
-    automatically open this (NOTE this will only work on MAC due to open command):
+
+7. Using any browser access your notebook at localhost:{port}. You can also
+    automatically open this (Note: this will only work on MAC due to open command):
     ``` bash
-    $ make nb
+    $ make lab
     ```
 8. Start working!
 
@@ -118,6 +119,7 @@ mlflow_artifact []:
 - [Docker command cheatsheet](https://www.docker.com/wp-content/uploads/2022/03/docker-cheat-sheet.pdf)
 - [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 - [Docker Compose reference](https://docs.docker.com/compose/compose-file/)
+
 
 ## Contributing
 PRs and feature requests very welcome!
