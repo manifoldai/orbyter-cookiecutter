@@ -2,18 +2,21 @@
 
 This is a high-level description of the PR
 
-# Changes
 
-* change 1
-* change 2
+## Code changes
 
-# Behaves Differently
+* code changes?
 
-* behavior 1
-* behavior 2
 
-# Untested
+## New behavior
+
+* new behavior?
+
+
+## Testing notes
 
 * anything untested?
 
-Closes #XXX. 
+<!-- 
+Closes #123
+-->

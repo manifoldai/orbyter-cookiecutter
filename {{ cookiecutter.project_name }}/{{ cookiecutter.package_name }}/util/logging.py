@@ -15,7 +15,6 @@ import yaml
 from dotenv import find_dotenv, load_dotenv
 from pytictoc import TicToc
 
-
 logger = logging.getLogger(__name__)
 
 
